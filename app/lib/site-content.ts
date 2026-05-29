@@ -3,9 +3,12 @@ const CHROME_WEB_STORE_URL =
 
 export const siteConfig = {
   name: "Pudding",
+  brandAlternateName: "Puddpet",
   description:
     "A smart pet companion with screenshots, mini games, Pomodoro timer, and reminders.",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://pudding-site.vercel.app",
+  /** Social / Open Graph preview (absolute URL built via metadataBase). */
+  ogImagePath: "/images/doge_normal.webp",
   version: "0.0.2",
   updatedAt: "2026-05-28",
   requirements: "Chrome 114+ / Edge 114+",

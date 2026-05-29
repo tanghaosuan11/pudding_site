@@ -17,6 +17,7 @@ type Dict = {
     description: string;
     ogTitle: string;
     ogDescription: string;
+    ogImageAlt: string;
     keywords: string[];
   };
   nav: { home: string; features: string; download: string; changelog: string };
@@ -67,16 +68,21 @@ type Dict = {
 const dictionaries: Record<Locale, Dict> = {
   zh_CN: {
     seo: {
-      title: "Pudding | AI 宠物浏览器插件",
-      description: "Pudding 是一个集宠物陪伴、翻译和效率工具于一体的浏览器插件。",
-      ogTitle: "Pudding | AI 宠物浏览器插件",
-      ogDescription: "可爱的 AI 宠物助手，支持翻译与效率工具。",
+      title: "Pudding（Puddpet）| Chrome 桌面宠物插件 · 划词翻译 · 番茄钟",
+      description:
+        "Pudding 官方站：免费 Chrome 桌面宠物扩展，浏览任意网页时可爱宠物陪伴，支持划词翻译、番茄钟与工具箱。从 Chrome 网上应用店一键安装。",
+      ogTitle: "Pudding | Chrome 桌面宠物 · 划词翻译插件",
+      ogDescription:
+        "把桌面宠物带进浏览器：划词翻译、番茄钟、效率工具箱。Puddpet 官方下载与功能介绍。",
+      ogImageAlt: "Pudding Chrome 桌面宠物插件预览图",
       keywords: [
-        "AI 宠物插件",
-        "浏览器翻译插件",
-        "效率工具插件",
-        "Chrome 宠物插件",
-        "Pudding",
+        "Chrome 桌面宠物插件",
+        "浏览器划词翻译插件",
+        "Chrome 宠物扩展",
+        "番茄钟浏览器插件",
+        "Pudding 插件",
+        "Puddpet",
+        "AI 宠物助手 Chrome",
       ],
     },
     nav: { home: "首页", features: "功能", download: "下载", changelog: "更新日志" },
@@ -139,17 +145,21 @@ const dictionaries: Record<Locale, Dict> = {
   },
   en: {
     seo: {
-      title: "Pudding | AI Pet Browser Extension",
+      title: "Pudding (Puddpet) | Desktop Pet Chrome Extension – Translate & Pomodoro",
       description:
-        "Pudding is an AI pet browser extension with translation and productivity tools for daily browsing.",
-      ogTitle: "Pudding | AI Pet Browser Extension",
-      ogDescription: "Cute AI pet companion with translation and productivity tools.",
+        "Official site for Pudding, a free Chrome extension: a desktop pet on every page, selection translation, Pomodoro timer and toolbox. Install from the Chrome Web Store.",
+      ogTitle: "Pudding | Desktop Pet for Chrome – Translation Extension",
+      ogDescription:
+        "Cute desktop pet while you browse, plus selection translate, Pomodoro and mini tools. Official Puddpet download.",
+      ogImageAlt: "Pudding desktop pet Chrome extension preview",
       keywords: [
-        "AI pet browser extension",
-        "translation extension",
-        "productivity extension",
-        "Chrome pet extension",
-        "Pudding",
+        "desktop pet chrome extension",
+        "selection translation chrome extension",
+        "chrome pet extension",
+        "pomodoro browser extension",
+        "pudding chrome extension",
+        "puddpet extension",
+        "AI pet assistant chrome",
       ],
     },
     nav: { home: "Home", features: "Features", download: "Download", changelog: "Changelog" },
@@ -213,16 +223,21 @@ const dictionaries: Record<Locale, Dict> = {
   },
   ja: {
     seo: {
-      title: "Pudding | AI ペットブラウザ拡張",
-      description: "Pudding は、翻訳と生産性ツールを備えた AI ペットブラウザ拡張です。",
-      ogTitle: "Pudding | AI ペットブラウザ拡張",
-      ogDescription: "かわいい AI ペットが翻訳と作業効率をサポートします。",
+      title: "Pudding（Puddpet）| Chrome デスクトップペット拡張 · 選択翻訳 · ポモドーロ",
+      description:
+        "Pudding 公式サイト：Chrome 用デスクトップペット拡張。閲覧中のかわいいペット、選択翻訳、ポモドーロ、ツールボックス。Chrome ウェブストアから無料インストール。",
+      ogTitle: "Pudding | Chrome デスクトップペット · 翻訳拡張機能",
+      ogDescription:
+        "ブラウザにデスクトップペットを。選択翻訳とポモドーロで作業をサポート。Puddpet 公式ダウンロード。",
+      ogImageAlt: "Pudding Chrome デスクトップペット拡張のプレビュー",
       keywords: [
-        "AI ペット拡張",
-        "翻訳拡張",
-        "生産性拡張",
-        "Chrome ペット拡張",
-        "Pudding",
+        "Chrome デスクトップペット 拡張",
+        "選択翻訳 Chrome 拡張",
+        "Chrome ペット 拡張機能",
+        "ポモドーロ ブラウザ 拡張",
+        "Pudding 拡張機能",
+        "Puddpet",
+        "AI ペット Chrome",
       ],
     },
     nav: { home: "ホーム", features: "機能", download: "ダウンロード", changelog: "更新履歴" },
@@ -285,16 +300,21 @@ const dictionaries: Record<Locale, Dict> = {
   },
   ko: {
     seo: {
-      title: "Pudding | AI 펫 브라우저 확장 프로그램",
-      description: "Pudding은 번역과 생산성 도구를 제공하는 AI 펫 브라우저 확장 프로그램입니다.",
-      ogTitle: "Pudding | AI 펫 브라우저 확장 프로그램",
-      ogDescription: "귀여운 AI 펫이 번역과 생산성 작업을 도와줍니다.",
+      title: "Pudding(Puddpet) | Chrome 데스크톱 펫 확장 · 드래그 번역 · 포모도로",
+      description:
+        "Pudding 공식 사이트: 무료 Chrome 데스크톱 펫 확장. 웹서핑 중 귀여운 펫, 텍스트 선택 번역, 포모도로 타이머와 도구함. Chrome 웹 스토어에서 설치.",
+      ogTitle: "Pudding | Chrome 데스크톱 펫 · 번역 확장 프로그램",
+      ogDescription:
+        "브라우저 속 데스크톱 펫, 선택 번역, 포모도로. Puddpet 공식 다운로드 및 기능 소개.",
+      ogImageAlt: "Pudding Chrome 데스크톱 펫 확장 미리보기",
       keywords: [
-        "AI 펫 확장 프로그램",
-        "브라우저 번역 확장",
-        "생산성 확장 프로그램",
-        "Chrome 펫 확장",
-        "Pudding",
+        "Chrome 데스크톱 펫 확장",
+        "선택 번역 크롬 확장",
+        "Chrome 펫 확장 프로그램",
+        "포모도로 브라우저 확장",
+        "Pudding 크롬 확장",
+        "Puddpet",
+        "AI 펫 크롬 확장",
       ],
     },
     nav: { home: "홈", features: "기능", download: "다운로드", changelog: "업데이트 내역" },
@@ -357,17 +377,21 @@ const dictionaries: Record<Locale, Dict> = {
   },
   pt_BR: {
     seo: {
-      title: "Pudding | Extensão de pet com IA",
+      title: "Pudding (Puddpet) | Pet de desktop para Chrome – tradução e Pomodoro",
       description:
-        "Pudding é uma extensão de navegador com pet de IA, tradução rápida e ferramentas de produtividade.",
-      ogTitle: "Pudding | Extensão de pet com IA",
-      ogDescription: "Um pet de IA fofo com tradução e recursos de produtividade.",
+        "Site oficial do Pudding: extensão gratuita para Chrome com pet de desktop em qualquer página, tradução por seleção, Pomodoro e caixa de ferramentas. Instale na Chrome Web Store.",
+      ogTitle: "Pudding | Pet de desktop no Chrome – extensão de tradução",
+      ogDescription:
+        "Pet fofo enquanto você navega, tradução por seleção e Pomodoro. Download oficial Puddpet.",
+      ogImageAlt: "Prévia da extensão Pudding pet de desktop para Chrome",
       keywords: [
-        "extensão pet IA",
-        "extensão de tradução",
-        "extensão de produtividade",
-        "extensão pet Chrome",
-        "Pudding",
+        "extensão pet desktop chrome",
+        "extensão tradução por seleção chrome",
+        "extensão pet chrome brasil",
+        "extensão pomodoro navegador",
+        "extensão pudding chrome",
+        "puddpet extensão",
+        "assistente pet IA chrome",
       ],
     },
     nav: { home: "Início", features: "Recursos", download: "Baixar", changelog: "Changelog" },

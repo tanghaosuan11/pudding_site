@@ -9,7 +9,7 @@ Lightweight single-page experience: showcase, download, changelog, privacy, and 
 - **5 locales**: `en`, `zh_CN`, `ja`, `ko`, `pt_BR` (default `zh_CN`)
 - **Single-page sections**: home, features, download, changelog (smooth scroll + snap)
 - **Download tracking**: `/go?target=chrome&from=...` → Chrome Web Store with UTM params
-- **SEO**: per-locale metadata, `sitemap.xml`, `robots.txt`, hreflang alternates
+- **SEO**: long-tail per-locale metadata, Open Graph image, `SoftwareApplication` JSON-LD, `sitemap.xml`, `robots.txt`, hreflang alternates
 
 ## Tech Stack
 

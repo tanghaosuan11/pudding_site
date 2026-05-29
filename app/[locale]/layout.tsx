@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/app/components/json-ld";
 import {
   isLocale,
   locales,
@@ -8,6 +9,7 @@ import {
   defaultLocale,
 } from "@/app/lib/i18n";
 import { siteConfig } from "@/app/lib/site-content";
+import { getSoftwareApplicationJsonLd } from "@/app/lib/structured-data";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -40,6 +42,11 @@ export async function generateMetadata(props: {
   const languageAlternates = Object.fromEntries(
     locales.map((item) => [toHrefLang(item), `${siteConfig.siteUrl}/${item}`]),
   );
+  const ogImage = {
+    url: siteConfig.ogImagePath,
+    alt: dict.seo.ogImageAlt,
+    type: "image/webp",
+  };
 
   return {
     title: {
@@ -62,11 +69,13 @@ export async function generateMetadata(props: {
       siteName: siteConfig.name,
       locale: toOpenGraphLocale(locale),
       type: "website",
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: dict.seo.ogTitle,
       description: dict.seo.ogDescription,
+      images: [siteConfig.ogImagePath],
     },
   };
 }
@@ -77,7 +86,14 @@ export default async function LocaleLayout(props: LayoutProps<"/[locale]">) {
     notFound();
   }
 
-  return <>{props.children}</>;
+  const jsonLd = getSoftwareApplicationJsonLd(locale);
+
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      {props.children}
+    </>
+  );
 }
 
 export function getLocaleFromParams(locale: string): Locale {
