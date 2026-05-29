@@ -32,5 +32,10 @@ export function GET(request: NextRequest) {
     }),
   );
 
-  return NextResponse.redirect(destination, { status: 307 });
+  return NextResponse.redirect(destination, {
+    status: 307,
+    headers: {
+      "Cache-Control": "no-store, no-cache, must-revalidate",
+    },
+  });
 }
