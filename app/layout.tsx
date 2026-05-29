@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Baloo_2, Geist_Mono, Nunito } from "next/font/google";
+import { Baloo_2, Geist_Mono, Noto_Sans_SC, Nunito } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/app/lib/site-content";
 
@@ -11,6 +11,12 @@ const nunito = Nunito({
 const baloo = Baloo_2({
   variable: "--font-baloo",
   subsets: ["latin"],
+});
+
+const notoSansSc = Noto_Sans_SC({
+  variable: "--font-noto-sc",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -32,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${nunito.variable} ${baloo.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${nunito.variable} ${baloo.variable} ${notoSansSc.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

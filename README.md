@@ -60,8 +60,8 @@ All UI strings live in `app/lib/i18n.ts`. Do not hardcode copy in pages. See [do
 ## Deploy (Vercel)
 
 1. Import repo in [Vercel](https://vercel.com).
-2. Set `NEXT_PUBLIC_SITE_URL` to your production domain.
-3. Add domain in Vercel → **Settings → Domains**.
+2. Set `NEXT_PUBLIC_SITE_URL` to your **primary** domain (no trailing slash), e.g. `https://www.puddpet.com` — must match the URL Vercel redirects to.
+3. Add **both** `puddpet.com` and `www.puddpet.com` in Vercel → **Settings → Domains**; set one as primary redirect.
 4. Point DNS (e.g. Cloudflare):
    - `@` → A `76.76.21.21`
    - `www` → CNAME `cname.vercel-dns.com`

@@ -20,7 +20,7 @@ export function SiteShell({ children, locale, mainClassName, labels }: SiteShell
       <header className="pet-glass fixed inset-x-0 top-0 z-40 border-b backdrop-blur">
         <div className="relative w-full px-6 py-4">
           <div className="mx-auto flex w-full max-w-6xl items-center justify-between">
-            <Link href={localePath(locale)} className="pet-title text-lg font-semibold text-indigo-600">
+            <Link href={localePath(locale)} className="pet-brand text-lg font-semibold text-indigo-600">
               {siteConfig.name}
             </Link>
             <nav className="flex items-center gap-5 pr-24 text-xs text-slate-700 md:text-sm">
@@ -36,7 +36,14 @@ export function SiteShell({ children, locale, mainClassName, labels }: SiteShell
           </div>
         </div>
       </header>
-      <main className={mainClassName ?? "mx-auto w-full max-w-6xl flex-1 px-6 pb-20 pt-20"}>{children}</main>
+      <main
+        className={
+          mainClassName ??
+          "mx-auto w-full max-w-6xl min-h-0 flex-1 overflow-y-auto px-6 pb-24 pt-24"
+        }
+      >
+        {children}
+      </main>
       <footer className="pet-glass fixed inset-x-0 bottom-0 z-40 border-t backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-6 text-sm text-slate-600">
           <p>© {new Date().getFullYear()} {siteConfig.name}. {labels.footer.rights}</p>

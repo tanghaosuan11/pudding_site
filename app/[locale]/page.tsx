@@ -11,9 +11,12 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
   const dict = getDictionary(currentLocale);
 
   return (
-    <SiteShell locale={currentLocale} labels={dict} mainClassName="flex-1 pb-20 pt-20">
-      <div className="snap-y snap-mandatory">
-        <section id="home" className="snap-start">
+    <SiteShell
+      locale={currentLocale}
+      labels={dict}
+      mainClassName="mx-auto w-full max-w-6xl min-h-0 flex-1 snap-y snap-mandatory overflow-y-auto px-6 pb-28 pt-24"
+    >
+        <section id="home" className="snap-start snap-always">
           <div className="mx-auto grid min-h-[calc(100svh-9rem)] max-w-6xl gap-10 px-6 py-10 md:grid-cols-2 md:items-center">
             <div className="space-y-6">
               <span className="pet-bubble inline-flex px-3 py-1 text-xs font-medium">
@@ -61,7 +64,7 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
             </div>
           </div>
         </section>
-        <section id="features" className="snap-start">
+        <section id="features" className="snap-start snap-always">
           <div className="mx-auto flex min-h-[calc(100svh-9rem)] max-w-6xl items-center px-6 py-10">
             <div className="w-full space-y-8">
               <div className="space-y-3">
@@ -80,7 +83,7 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
           </div>
         </section>
 
-        <section id="download" className="snap-start">
+        <section id="download" className="snap-start snap-always">
           <div className="mx-auto flex min-h-[calc(100svh-9rem)] max-w-6xl items-center px-6 py-10">
             <div className="w-full space-y-8">
               <div className="space-y-3">
@@ -100,7 +103,7 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
           </div>
         </section>
 
-        <section id="changelog" className="snap-start">
+        <section id="changelog" className="snap-start snap-always">
           <div className="mx-auto flex min-h-[calc(100svh-9rem)] max-w-6xl items-center px-6 py-10">
             <div className="w-full space-y-6">
               <h2 className="pet-title text-3xl font-medium text-slate-900">{dict.nav.changelog}</h2>
@@ -118,7 +121,6 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
             </div>
           </div>
         </section>
-        </div>
     </SiteShell>
   );
 }
