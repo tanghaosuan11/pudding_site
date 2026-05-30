@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { SiteShell } from "@/app/components/site-shell";
 import { siteConfig } from "@/app/lib/site-content";
@@ -29,6 +28,7 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/go?target=chrome&from=home-hero"
+                  prefetch={false}
                   className="pet-btn-primary rounded-full px-6 py-3 text-sm font-semibold"
                 >
                   {dict.common.installNow}
@@ -52,13 +52,14 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
               </div>
               <div className="mt-4 flex items-end justify-between">
                 <p className="pet-bubble px-3 py-1 text-xs">Hi! I am Pudding 👋</p>
-                <Image
-                  src="/images/doge_normal.webp"
+                <img
+                  src="/images/doge_thumb.webp"
                   alt="Pudding pet"
                   width={86}
-                  height={86}
+                  height={112}
                   className="h-auto w-[86px] drop-shadow-md"
-                  priority
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
             </div>

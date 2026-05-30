@@ -20,12 +20,17 @@ export function SiteShell({ children, locale, mainClassName, labels }: SiteShell
       <header className="pet-glass fixed inset-x-0 top-0 z-40 border-b backdrop-blur">
         <div className="relative w-full px-6 py-4">
           <div className="mx-auto flex w-full max-w-6xl items-center justify-between">
-            <Link href={localePath(locale)} className="pet-brand text-lg font-semibold text-indigo-600">
+            <Link href={localePath(locale)} prefetch={false} className="pet-brand text-lg font-semibold text-indigo-600">
               {siteConfig.name}
             </Link>
             <nav className="flex items-center gap-5 pr-24 text-xs text-slate-700 md:text-sm">
               {navItems.map((item) => (
-                <Link key={item.href} href={localePath(locale, item.href)} className="hover:text-indigo-600">
+                <Link
+                  key={item.href}
+                  href={localePath(locale, item.href)}
+                  prefetch={false}
+                  className="hover:text-indigo-600"
+                >
                   {labels.nav[item.key as keyof typeof labels.nav]}
                 </Link>
               ))}
@@ -48,10 +53,10 @@ export function SiteShell({ children, locale, mainClassName, labels }: SiteShell
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-6 text-sm text-slate-600">
           <p>© {new Date().getFullYear()} {siteConfig.name}. {labels.footer.rights}</p>
           <div className="flex items-center gap-4">
-            <Link href={localePath(locale, "/privacy")} className="hover:text-indigo-700">
+            <Link href={localePath(locale, "/privacy")} prefetch={false} className="hover:text-indigo-700">
               {labels.footer.privacy}
             </Link>
-            <Link href={localePath(locale, "/terms")} className="hover:text-indigo-700">
+            <Link href={localePath(locale, "/terms")} prefetch={false} className="hover:text-indigo-700">
               {labels.footer.terms}
             </Link>
           </div>
