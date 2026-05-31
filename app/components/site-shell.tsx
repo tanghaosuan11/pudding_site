@@ -3,6 +3,7 @@ import { navItems, siteConfig } from "@/app/lib/site-content";
 import type { Locale } from "@/app/lib/i18n";
 import { localePath } from "@/app/lib/i18n";
 import { LanguageSelect } from "@/app/components/language-select";
+import { DraggablePet } from "@/app/components/draggable-pet";
 
 type SiteShellProps = {
   children: React.ReactNode;
@@ -62,6 +63,7 @@ export function SiteShell({ children, locale, mainClassName, labels }: SiteShell
           </div>
         </div>
       </footer>
+      <DraggablePet />
     </div>
   );
 }

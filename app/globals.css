@@ -139,3 +139,31 @@ html {
     transform: scale(1);
   }
 }
+
+/* ── Draggable pet ── */
+@keyframes pudding-squash {
+  0%   { transform: scaleX(1.12) scaleY(0.85); }
+  25%  { transform: rotate(4deg) scaleX(0.93) scaleY(1.05); }
+  50%  { transform: rotate(-3deg) scaleX(1.04) scaleY(0.97); }
+  75%  { transform: rotate(1.5deg) scaleX(0.98) scaleY(1.01); }
+  100% { transform: scale(1); }
+}
+
+@keyframes pudding-land {
+  0%   { transform: scaleX(1.1) scaleY(0.82); }
+  60%  { transform: scaleX(0.94) scaleY(1.06); }
+  85%  { transform: scaleX(1.02) scaleY(0.98); }
+  100% { transform: scale(1); }
+}
+
+@keyframes launch-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50%       { transform: scale(1.15); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  img[alt="Pudding"] {
+    animation: none !important;
+    transform: none !important;
+  }
+}
