@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 // ── Constants (ported from original pet project) ───────────────────────────────
 const PET_SIZE = 60; // 80 * 0.75
+const SAFE_BOTTOM = 72; // fixed footer height — keeps pet above footer
 const FOLLOW_SPEED = 0.2; // PetAvatar.tsx: FOLLOW_SPEED = 0.2
 const DRAG_THRESHOLD = 4;
 
@@ -35,7 +36,7 @@ function defaultPos(): Pos {
 function padCenter() {
   return {
     cx: window.innerWidth - PAD_R - PAD_OFFSET,
-    cy: window.innerHeight - PAD_R - PAD_OFFSET,
+    cy: window.innerHeight - SAFE_BOTTOM - PAD_R - PAD_OFFSET,
   };
 }
 function anchorPos(cx: number, cy: number): Pos {
@@ -45,7 +46,7 @@ function anchorPos(cx: number, cy: number): Pos {
 function clampPos(p: Pos): Pos {
   return {
     x: Math.max(0, Math.min(window.innerWidth - PET_SIZE, p.x)),
-    y: Math.max(0, Math.min(window.innerHeight - PET_SIZE, p.y)),
+    y: Math.max(0, Math.min(window.innerHeight - PET_SIZE - SAFE_BOTTOM, p.y)),
   };
 }
 /** Clamp aim to north-west quadrant (-pi ... -pi/2) — cornerAim.ts clampAimAngle('northWest') */
@@ -58,6 +59,11 @@ function clampAimAngle(raw: number): number {
   }
   return angle;
 }
+/** Lerp angle in degrees with wrapping — matches positionUtils.ts lerpAngle */
+function lerpAngleDeg(cur: number, tgt: number, t: number): number {
+  const diff = ((tgt - cur + 540) % 360) - 180;
+  return cur + diff * t;
+}
 /** Per-frame velocity friction — steeringFlight.ts applyLaunchSpeedFriction */
 function launchFriction(speed: number): number {
   const t = Math.min(speed / 3000, 1);
@@ -65,7 +71,7 @@ function launchFriction(speed: number): number {
 }
 
 // ── Component ──────────────────────────────────────────────────────────────────
-export function DraggablePet() {
+export function DraggablePet({ labels }: { labels: { feed: string; pat: string } }) {
   const [rs, setRs] = useState<RS | null>(null);
   const [phase, setPhase] = useState<Phase>("idle");
   const [squash, setSquash] = useState(false);
@@ -74,11 +80,15 @@ export function DraggablePet() {
   const [padActive, setPadActive] = useState(false);
   const [padReady, setPadReady] = useState(false);
   const [aimAngle, setAimAngle] = useState(0);
+  const [petAnim, setPetAnim] = useState<"normal" | "feeding" | "patting">("normal");
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [menuPos, setMenuPos] = useState<Pos>({ x: 0, y: 0 });
 
   const phaseRef = useRef<Phase>("idle");
   const target = useRef<Pos>({ x: 0, y: 0 });
   const latest = useRef<Pos>({ x: 0, y: 0 });
   const tilt = useRef(0);
+  const flightDir = useRef(0);
   const dragOff = useRef<Pos>({ x: 0, y: 0 });
   const downScreen = useRef<Pos>({ x: 0, y: 0 });
   const moved = useRef(false);
@@ -89,6 +99,8 @@ export function DraggablePet() {
   const lowSpeedFrames = useRef(0);
   const aimRef = useRef(0);
   const mouse = useRef<Pos>({ x: 0, y: 0 });
+  const lastClickTime = useRef(0);
+  const petAnimTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Callback refs — avoids self-reference TDZ and ref-during-render lint errors
   const dragTickRef = useRef<() => void>(() => {});
   const flyTickRef = useRef<FrameRequestCallback>(() => {});
@@ -121,6 +133,23 @@ export function DraggablePet() {
     return () => { cancelAnimationFrame(id1); cancelAnimationFrame(id2); };
   }, [padVisible]);
 
+  // Re-clamp position on resize (e.g. mobile browser chrome show/hide)
+  useEffect(() => {
+    const handleResize = () => {
+      if (phaseRef.current !== "idle") return;
+      const clamped = clampPos(latest.current);
+      if (clamped.x !== latest.current.x || clamped.y !== latest.current.y) {
+        latest.current = clamped;
+        setRs({ ...clamped, tilt: 0 });
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Cleanup animation timer on unmount
+  useEffect(() => () => { if (petAnimTimer.current) clearTimeout(petAnimTimer.current); }, []);
+
   // ── Stable helpers ──
   const syncPhase = useCallback((p: Phase) => {
     phaseRef.current = p;
@@ -136,6 +165,20 @@ export function DraggablePet() {
     const angle = clampAimAngle(Math.atan2(my - cy, mx - cx));
     aimRef.current = angle;
     setAimAngle(angle);
+  }, []);
+
+  const handleFeed = useCallback(() => {
+    setMenuVisible(false);
+    if (petAnimTimer.current) clearTimeout(petAnimTimer.current);
+    setPetAnim("feeding");
+    petAnimTimer.current = setTimeout(() => setPetAnim("normal"), 3000);
+  }, []);
+
+  const handlePat = useCallback(() => {
+    setMenuVisible(false);
+    if (petAnimTimer.current) clearTimeout(petAnimTimer.current);
+    setPetAnim("patting");
+    petAnimTimer.current = setTimeout(() => setPetAnim("normal"), 2500);
   }, []);
 
   // ── Drag follow RAF (lerp, FOLLOW_SPEED = 0.2 matching original) ──
@@ -198,7 +241,7 @@ export function DraggablePet() {
     let ny = latest.current.y + vy * dt;
 
     const maxX = window.innerWidth - PET_SIZE;
-    const maxY = window.innerHeight - PET_SIZE;
+    const maxY = window.innerHeight - PET_SIZE - SAFE_BOTTOM;
 
     if (nx < 0) { nx = 0; vx = Math.abs(vx) * WALL_BOUNCE; }
     if (nx > maxX) { nx = maxX; vx = -Math.abs(vx) * WALL_BOUNCE; }
@@ -215,7 +258,9 @@ export function DraggablePet() {
 
     vel.current = { x: vx, y: vy };
     latest.current = { x: nx, y: ny };
-    tilt.current = Math.max(-15, Math.min(15, vx * 0.015));
+    const targetDir = Math.atan2(vy, vx) * (180 / Math.PI) + 90;
+    flightDir.current = lerpAngleDeg(flightDir.current, targetDir, 0.35);
+    tilt.current = flightDir.current;
     setRs({ x: nx, y: ny, tilt: tilt.current });
 
     const newSpeed = Math.hypot(vx, vy);
@@ -223,6 +268,7 @@ export function DraggablePet() {
     lowSpeedFrames.current = lf;
 
     if (lf >= STOP_FRAMES || elapsed > MAX_FLIGHT_MS) {
+      flightDir.current = 0;
       tilt.current = 0;
       setRs({ x: nx, y: ny, tilt: 0 });
       rafId.current = 0;
@@ -243,6 +289,8 @@ export function DraggablePet() {
       e.preventDefault();
       e.currentTarget.setPointerCapture(e.pointerId);
       stopRaf();
+      flightDir.current = 0;
+      setMenuVisible(false);
       settling.current = false;
       const lp = latest.current;
       dragOff.current = { x: e.clientX - lp.x, y: e.clientY - lp.y };
@@ -313,7 +361,18 @@ export function DraggablePet() {
     }
 
     if (p === "dragging") {
-      if (!moved.current) { syncPhase("idle"); return; }
+      if (!moved.current) {
+        const now = Date.now();
+        if (now - lastClickTime.current < 300) {
+          lastClickTime.current = 0;
+          setMenuPos({ ...latest.current });
+          setMenuVisible(true);
+        } else {
+          lastClickTime.current = now;
+        }
+        syncPhase("idle");
+        return;
+      }
       settling.current = true;
       if (!rafId.current) rafId.current = requestAnimationFrame(dragTickRef.current);
     }
@@ -334,6 +393,10 @@ export function DraggablePet() {
   const aimLen = PAD_R + 30; // r + 30 matches original LaunchCircle
   const aimX2 = padCx + Math.cos(aimAngle) * aimLen;
   const aimY2 = padCy + Math.sin(aimAngle) * aimLen;
+  const imgSrc =
+    petAnim === "feeding" ? "/images/doge_feed.webp"
+    : petAnim === "patting" ? "/images/doge_touch.webp"
+    : "/images/doge_normal.webp";
   const imgAnim: string | undefined = squash
     ? "pudding-squash 0.35s ease-out"
     : land ? "pudding-land 0.30s ease-out" : undefined;
@@ -394,7 +457,7 @@ export function DraggablePet() {
       {/* Pet image */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/images/doge_normal.webp"
+        src={imgSrc}
         alt="Pudding"
         draggable={false}
         onPointerDown={onPointerDown}
@@ -412,10 +475,77 @@ export function DraggablePet() {
           filter: isActive
             ? "drop-shadow(0 8px 12px rgba(99,102,241,0.45))"
             : "drop-shadow(2px 2px 4px rgba(0,0,0,0.22))",
-          transition: isActive ? "filter 0.1s ease" : "filter 0.4s ease",
+          transition: isActive
+            ? "filter 0.1s ease"
+            : "filter 0.4s ease, transform 0.3s ease",
           animation: imgAnim,
         }}
       />
+
+      {/* Double-click action menu */}
+      {menuVisible && (
+        <>
+          <div
+            style={{ position: "fixed", inset: 0, zIndex: 50 }}
+            onPointerDown={() => setMenuVisible(false)}
+          />
+          <div
+            style={{
+              position: "fixed",
+              zIndex: 51,
+              left: menuPos.x + PET_SIZE / 2,
+              top: Math.max(8, menuPos.y - 72),
+              transform: "translateX(-50%)",
+              display: "flex",
+              gap: 6,
+              background: "rgba(255,255,255,0.96)",
+              borderRadius: 14,
+              padding: "8px 10px",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.18)",
+              pointerEvents: "auto",
+            }}
+          >
+            <button
+              onClick={handleFeed}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 5,
+                padding: "5px 12px",
+                borderRadius: 10,
+                border: "none",
+                background: "rgba(245,158,11,0.1)",
+                color: "#92400e",
+                fontSize: 13,
+                fontWeight: 500,
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+              }}
+            >
+              🍖 {labels.feed}
+            </button>
+            <button
+              onClick={handlePat}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 5,
+                padding: "5px 12px",
+                borderRadius: 10,
+                border: "none",
+                background: "rgba(99,102,241,0.1)",
+                color: "#3730a3",
+                fontSize: 13,
+                fontWeight: 500,
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+              }}
+            >
+              ✋ {labels.pat}
+            </button>
+          </div>
+        </>
+      )}
     </>
   );
 }

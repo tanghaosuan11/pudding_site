@@ -12,6 +12,7 @@ type SiteShellProps = {
   labels: {
     nav: { home: string; features: string; download: string; changelog: string };
     footer: { privacy: string; terms: string; rights: string };
+    pet: { feed: string; pat: string };
   };
 };
 
@@ -63,7 +64,7 @@ export function SiteShell({ children, locale, mainClassName, labels }: SiteShell
           </div>
         </div>
       </footer>
-      <DraggablePet />
+      <DraggablePet labels={labels.pet} />
     </div>
   );
 }

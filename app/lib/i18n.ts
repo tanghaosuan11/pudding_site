@@ -63,6 +63,10 @@ type Dict = {
     privacyIntro: string;
     termsIntro: string;
   };
+  pet: {
+    feed: string;
+    pat: string;
+  };
 };
 
 const dictionaries: Record<Locale, Dict> = {
@@ -142,6 +146,7 @@ const dictionaries: Record<Locale, Dict> = {
       privacyIntro: "Pudding 网站仅用于产品展示和下载引导。我们默认不收集可识别个人身份的信息。",
       termsIntro: "访问本网站或下载扩展，即表示你同意相关条款。",
     },
+    pet: { feed: "喂食", pat: "摸头" },
   },
   en: {
     seo: {
@@ -220,6 +225,7 @@ const dictionaries: Record<Locale, Dict> = {
       privacyIntro: "Pudding website is for product showcase and download guidance only. We do not collect personally identifiable information by default.",
       termsIntro: "By accessing this website or downloading the extension, you agree to these terms.",
     },
+    pet: { feed: "Feed", pat: "Head Pat" },
   },
   ja: {
     seo: {
@@ -297,6 +303,7 @@ const dictionaries: Record<Locale, Dict> = {
       privacyIntro: "Pudding サイトは製品紹介とダウンロード案内のためのものです。個人を特定できる情報は原則収集しません。",
       termsIntro: "本サイトの利用または拡張機能のダウンロードにより、本規約に同意したものとみなされます。",
     },
+    pet: { feed: "エサをあげる", pat: "なでなで" },
   },
   ko: {
     seo: {
@@ -374,6 +381,7 @@ const dictionaries: Record<Locale, Dict> = {
       privacyIntro: "Pudding 웹사이트는 제품 소개와 다운로드 안내 용도입니다. 기본적으로 개인 식별 정보를 수집하지 않습니다.",
       termsIntro: "이 웹사이트를 이용하거나 확장 프로그램을 다운로드하면 본 약관에 동의한 것으로 간주됩니다.",
     },
+    pet: { feed: "먹이주기", pat: "머리쓰다듬기" },
   },
   pt_BR: {
     seo: {
@@ -451,6 +459,7 @@ const dictionaries: Record<Locale, Dict> = {
       privacyIntro: "O site do Pudding é usado apenas para apresentação do produto e orientação de download. Não coletamos dados pessoais identificáveis por padrão.",
       termsIntro: "Ao acessar este site ou baixar a extensão, você concorda com estes termos.",
     },
+    pet: { feed: "Alimentar", pat: "Acariciar" },
   },
 };
 
