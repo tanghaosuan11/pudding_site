@@ -55,7 +55,7 @@ type Dict = {
     pomodoroHint: string;
   };
   changelog: {
-    changes: string[];
+    entries: { version: string; date: string; changes: string[] }[];
   };
   legal: {
     effectiveDateLabel: string;
@@ -134,15 +134,31 @@ const dictionaries: Record<Locale, Dict> = {
       pomodoroHint: "点击按钮会弹出大只宠物一会儿后自动隐藏。",
     },
     changelog: {
-      changes: [
-        "发布通用版官网，包含展示与下载链路。",
-        "新增来源参数跳转路由，便于后续统计转化。",
-        "补齐隐私政策、使用条款与基础 SEO 文件。",
+      entries: [
+        {
+          version: "0.0.4",
+          date: "2026-06-01",
+          changes: [
+            "重构 AI Provider 系统，统一管理 AI 服务，修复 AI 分组功能异常。",
+            "优化宠物说话模块，重构对话逻辑，支持边走边静态，新增内容总结功能。",
+            "新增 Tabs 标签页功能，游戏窗口支持自由调节大小，优化 Doodle Jump 体验。",
+            "全面优化番茄钟、闹钟与计时器 UI，恢复阅读模式与 Cookie 功能，精简多语言实现。",
+          ],
+        },
+        {
+          version: "0.0.2",
+          date: "2026-05-28",
+          changes: [
+            "发布通用版官网，包含展示与下载链路。",
+            "新增来源参数跳转路由，便于后续统计转化。",
+            "补齐隐私政策、使用条款与基础 SEO 文件。",
+          ],
+        },
       ],
     },
     legal: {
       effectiveDateLabel: "生效日期",
-      date: "2026-05-28",
+      date: "2026-06-01",
       privacyIntro: "Pudding 网站仅用于产品展示和下载引导。我们默认不收集可识别个人身份的信息。",
       termsIntro: "访问本网站或下载扩展，即表示你同意相关条款。",
     },
@@ -213,15 +229,31 @@ const dictionaries: Record<Locale, Dict> = {
       pomodoroHint: "Click to pop a bigger pet for a short moment.",
     },
     changelog: {
-      changes: [
-        "Published the general website with showcase and download flow.",
-        "Added source-aware redirect route for conversion tracking.",
-        "Added privacy, terms, and baseline SEO files.",
+      entries: [
+        {
+          version: "0.0.4",
+          date: "2026-06-01",
+          changes: [
+            "Refactored AI Provider system with unified AI service management; fixed AI group unavailable issue.",
+            "Overhauled pet speech module, reworked dialogue logic, added static-while-walking pose and content summarization.",
+            "Added Tabs support, game window resizing, and improved Doodle Jump experience.",
+            "Improved Pomodoro, alarm, and timer UI; restored reading mode and cookie support; streamlined i18n.",
+          ],
+        },
+        {
+          version: "0.0.2",
+          date: "2026-05-28",
+          changes: [
+            "Published the general website with showcase and download flow.",
+            "Added source-aware redirect route for conversion tracking.",
+            "Added privacy, terms, and baseline SEO files.",
+          ],
+        },
       ],
     },
     legal: {
       effectiveDateLabel: "Effective date",
-      date: "2026-05-28",
+      date: "2026-06-01",
       privacyIntro: "Pudding website is for product showcase and download guidance only. We do not collect personally identifiable information by default.",
       termsIntro: "By accessing this website or downloading the extension, you agree to these terms.",
     },
@@ -291,15 +323,31 @@ const dictionaries: Record<Locale, Dict> = {
       pomodoroHint: "クリックで大きいペットが少し表示されます。",
     },
     changelog: {
-      changes: [
-        "一般版サイトを公開し、紹介とダウンロード導線を整備。",
-        "流入元付きリダイレクトを追加し、転換計測に対応。",
-        "プライバシー、利用規約、SEO 基本設定を追加。",
+      entries: [
+        {
+          version: "0.0.4",
+          date: "2026-06-01",
+          changes: [
+            "AI Provider システムをリファクタリングし、AI サービスを統一管理。AIグループ利用不可の問題を修正。",
+            "ペット発話モジュールを刷新し、歩行中の静止ポーズ表示と内容要約機能を追加。",
+            "タブ機能を追加し、ゲームウィンドウのサイズ変更に対応、Doodle Jump の体験を改善。",
+            "ポモドーロ・アラーム・タイマーの UI を改善。リーディングモードと Cookie 機能を復元、多言語実装を簡略化。",
+          ],
+        },
+        {
+          version: "0.0.2",
+          date: "2026-05-28",
+          changes: [
+            "一般版サイトを公開し、紹介とダウンロード導線を整備。",
+            "流入元付きリダイレクトを追加し、転換計測に対応。",
+            "プライバシー、利用規約、SEO 基本設定を追加。",
+          ],
+        },
       ],
     },
     legal: {
       effectiveDateLabel: "発効日",
-      date: "2026-05-28",
+      date: "2026-06-01",
       privacyIntro: "Pudding サイトは製品紹介とダウンロード案内のためのものです。個人を特定できる情報は原則収集しません。",
       termsIntro: "本サイトの利用または拡張機能のダウンロードにより、本規約に同意したものとみなされます。",
     },
@@ -369,15 +417,31 @@ const dictionaries: Record<Locale, Dict> = {
       pomodoroHint: "버튼을 누르면 큰 펫이 잠깐 나타났다 사라집니다.",
     },
     changelog: {
-      changes: [
-        "일반 웹사이트를 공개하고 소개/다운로드 흐름을 구성했습니다.",
-        "유입 출처를 포함한 리다이렉트를 추가해 전환 추적을 지원합니다.",
-        "개인정보처리방침, 약관, 기본 SEO를 추가했습니다.",
+      entries: [
+        {
+          version: "0.0.4",
+          date: "2026-06-01",
+          changes: [
+            "AI Provider 시스템 리팩터링으로 AI 서비스를 통합 관리하고 AI 그룹 오류를 수정했습니다.",
+            "펫 말하기 모듈을 재구성하고, 걸으면서 멈추는 자세와 내용 요약 기능을 추가했습니다.",
+            "탭 기능 추가, 게임 창 크기 조절 지원, Doodle Jump 경험을 개선했습니다.",
+            "포모도로·알람·타이머 UI 개선, 읽기 모드 및 Cookie 기능 복원, 다국어 구현 간소화.",
+          ],
+        },
+        {
+          version: "0.0.2",
+          date: "2026-05-28",
+          changes: [
+            "일반 웹사이트를 공개하고 소개/다운로드 흐름을 구성했습니다.",
+            "유입 출처를 포함한 리다이렉트를 추가해 전환 추적을 지원합니다.",
+            "개인정보처리방침, 약관, 기본 SEO를 추가했습니다.",
+          ],
+        },
       ],
     },
     legal: {
       effectiveDateLabel: "시행일",
-      date: "2026-05-28",
+      date: "2026-06-01",
       privacyIntro: "Pudding 웹사이트는 제품 소개와 다운로드 안내 용도입니다. 기본적으로 개인 식별 정보를 수집하지 않습니다.",
       termsIntro: "이 웹사이트를 이용하거나 확장 프로그램을 다운로드하면 본 약관에 동의한 것으로 간주됩니다.",
     },
@@ -447,15 +511,31 @@ const dictionaries: Record<Locale, Dict> = {
       pomodoroHint: "Ao clicar, um pet maior aparece por um instante.",
     },
     changelog: {
-      changes: [
-        "Lançamento do site geral com vitrine e fluxo de download.",
-        "Adição de redirecionamento com origem para medir conversão.",
-        "Inclusão de privacidade, termos e SEO básico.",
+      entries: [
+        {
+          version: "0.0.4",
+          date: "2026-06-01",
+          changes: [
+            "Refatoração do sistema AI Provider com gerenciamento unificado de IA; corrigido problema de grupo de IA indisponível.",
+            "Módulo de fala do pet reformulado com pose estática durante o caminhar e nova função de resumo de conteúdo.",
+            "Adicionado suporte a abas (Tabs), redimensionamento da janela de jogo e melhora na experiência do Doodle Jump.",
+            "Melhorias de UI no Pomodoro, alarme e timer; modo de leitura e cookies restaurados; i18n simplificado.",
+          ],
+        },
+        {
+          version: "0.0.2",
+          date: "2026-05-28",
+          changes: [
+            "Lançamento do site geral com vitrine e fluxo de download.",
+            "Adição de redirecionamento com origem para medir conversão.",
+            "Inclusão de privacidade, termos e SEO básico.",
+          ],
+        },
       ],
     },
     legal: {
       effectiveDateLabel: "Data de vigência",
-      date: "2026-05-28",
+      date: "2026-06-01",
       privacyIntro: "O site do Pudding é usado apenas para apresentação do produto e orientação de download. Não coletamos dados pessoais identificáveis por padrão.",
       termsIntro: "Ao acessar este site ou baixar a extensão, você concorda com estes termos.",
     },

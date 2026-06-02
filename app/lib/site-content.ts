@@ -19,8 +19,8 @@ export const siteConfig = {
   siteUrl: normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL),
   /** Social / Open Graph preview (absolute URL built via metadataBase). */
   ogImagePath: "/images/doge_normal.webp",
-  version: "0.0.2",
-  updatedAt: "2026-05-28",
+  version: "0.0.4",
+  updatedAt: "2026-06-01",
   requirements: "Chrome 114+ / Edge 114+",
   downloadTargets: {
     chrome: process.env.NEXT_PUBLIC_CHROME_STORE_URL || CHROME_WEB_STORE_URL,
