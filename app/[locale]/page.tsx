@@ -104,7 +104,7 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
         </section>
 
         <section id="changelog" className="snap-start snap-always min-h-svh">
-          <div className="mx-auto flex min-h-[calc(100svh-9rem)] max-w-6xl flex-col justify-center px-6 py-10">
+          <div className="mx-auto flex min-h-[calc(100svh-9rem)] max-w-6xl flex-col justify-center px-6 pb-10 pt-32">
             <h2 className="pet-title mb-6 text-3xl font-medium text-slate-900">{dict.nav.changelog}</h2>
             <div className="min-h-0 flex-1 overflow-y-auto pr-2" style={{ maxHeight: "calc(100svh - 16rem)" }}>
               <div className="relative pl-6">
