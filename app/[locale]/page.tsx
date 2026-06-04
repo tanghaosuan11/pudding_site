@@ -51,14 +51,10 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
               </div>
               <div className="mt-4 flex items-end justify-between">
                 <p className="pet-bubble px-3 py-1 text-xs">Hi! I am Pudding 👋</p>
-                <img
-                  src="/images/doge_thumb.webp"
-                  alt="Pudding pet"
-                  width={86}
-                  height={112}
-                  className="h-auto w-[86px] drop-shadow-md"
-                  fetchPriority="high"
-                  decoding="async"
+                <div
+                  data-pet-home-anchor
+                  className="h-[86px] w-[86px] shrink-0"
+                  aria-hidden
                 />
               </div>
             </div>

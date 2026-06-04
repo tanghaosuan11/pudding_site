@@ -33,6 +33,22 @@ function defaultPos(): Pos {
     y: window.innerHeight - PET_SIZE - 100,
   };
 }
+
+/** Homepage hero card: where the static pet image used to sit */
+function homeAnchorPos(): Pos | null {
+  const el = document.querySelector("[data-pet-home-anchor]");
+  if (!el) return null;
+  const r = el.getBoundingClientRect();
+  if (r.width < 1 || r.height < 1) return null;
+  return clampPos({
+    x: r.right - PET_SIZE,
+    y: r.bottom - PET_SIZE,
+  });
+}
+
+function resolveInitialPos(): Pos {
+  return homeAnchorPos() ?? defaultPos();
+}
 function padCenter() {
   return {
     cx: window.innerWidth - PAD_R - PAD_OFFSET,
@@ -105,13 +121,18 @@ export function DraggablePet({ labels }: { labels: { feed: string; pat: string }
   const dragTickRef = useRef<() => void>(() => {});
   const flyTickRef = useRef<FrameRequestCallback>(() => {});
 
-  useEffect(() => {
-    const p = defaultPos();
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+  const applyInitialPos = useCallback(() => {
+    const p = resolveInitialPos();
     setRs({ ...p, tilt: 0 });
     latest.current = p;
     target.current = p;
   }, []);
+
+  useEffect(() => {
+    applyInitialPos();
+    const t = window.setTimeout(applyInitialPos, 100);
+    return () => window.clearTimeout(t);
+  }, [applyInitialPos]);
 
   useEffect(() => {
     const h = (e: MouseEvent) => { mouse.current = { x: e.clientX, y: e.clientY }; };
