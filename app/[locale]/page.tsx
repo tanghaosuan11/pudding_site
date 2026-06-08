@@ -73,6 +73,13 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
                     <h3 className="pet-title text-xl font-medium text-indigo-700">{card.title}</h3>
                     <p className="mt-2 text-slate-600">{card.detail}</p>
                     <p className="mt-2 text-sm text-slate-500">{card.longDetail}</p>
+                    <Link
+                      href={localePath(currentLocale, `/features/${card.slug}`)}
+                      prefetch={false}
+                      className="mt-4 inline-flex text-sm font-semibold text-indigo-600 hover:text-indigo-800"
+                    >
+                      {dict.common.learnMore} →
+                    </Link>
                   </article>
                 ))}
               </div>

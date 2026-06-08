@@ -6,7 +6,17 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
 
 const locales = ["en", "zh_CN", "ja", "ko", "pt_BR"];
-const suffixes = ["", "/features", "/download", "/changelog", "/faq", "/privacy", "/terms"];
+const featureSlugs = ["pet", "translation", "toolbox", "pomodoro"];
+const suffixes = [
+  "",
+  "/features",
+  ...featureSlugs.map((slug) => `/features/${slug}`),
+  "/download",
+  "/changelog",
+  "/faq",
+  "/privacy",
+  "/terms",
+];
 const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.puddpet.com").replace(/\/$/, "");
 const lastmod = process.env.SITEMAP_LASTMOD || "2026-05-28";
 

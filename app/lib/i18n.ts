@@ -30,7 +30,14 @@ type Dict = {
     items: { question: string; answer: string }[];
     installCta: string;
   };
-  common: { installNow: string; viewFeatures: string; featuresTitle: string };
+  common: {
+    installNow: string;
+    viewFeatures: string;
+    featuresTitle: string;
+    learnMore: string;
+    backToFeatures: string;
+    otherFeatures: string;
+  };
   home: {
     badge: string;
     title: string;
@@ -39,7 +46,7 @@ type Dict = {
   };
   features: {
     intro: string;
-    cards: { title: string; detail: string; longDetail: string }[];
+    cards: { slug: string; title: string; detail: string; longDetail: string }[];
   };
   download: {
     intro: string;
@@ -148,7 +155,14 @@ const dictionaries: Record<Locale, Dict> = {
       ],
       installCta: "前往 Chrome 商店安装",
     },
-    common: { installNow: "立即安装", viewFeatures: "查看功能", featuresTitle: "核心能力" },
+    common: {
+      installNow: "立即安装",
+      viewFeatures: "查看功能",
+      featuresTitle: "核心能力",
+      learnMore: "了解更多",
+      backToFeatures: "返回功能概览",
+      otherFeatures: "其他功能",
+    },
     home: {
       badge: "Chrome 宠物插件",
       title: "Pudding：翻译与效率并存的 AI 宠物助手",
@@ -164,24 +178,28 @@ const dictionaries: Record<Locale, Dict> = {
       intro: "Pudding 以轻量、可爱、可信为目标，把宠物陪伴与效率工具融合到浏览体验中。",
       cards: [
         {
+          slug: "pet",
           title: "宠物互动",
           detail: "浏览时有轻量互动反馈，让工作学习更有陪伴感。",
           longDetail:
             "宠物可在任意网页角落陪伴，支持跟随、喂食、摸头等轻量互动，并可拖动到合适位置，不遮挡主要内容区域。",
         },
         {
+          slug: "translation",
           title: "翻译助手",
           detail: "快速翻译网页文本，降低跨语言阅读成本。",
           longDetail:
             "选中页面文字即可触发划词翻译，适合阅读外文资讯、技术文档与社区帖子，减少在翻译网站与当前页之间来回切换。",
         },
         {
+          slug: "toolbox",
           title: "工具箱",
           detail: "集合常用小工具，减少频繁切换页面和应用。",
           longDetail:
             "将截图、提醒、小游戏等常用能力收纳在同一扩展面板中，降低打开多个标签页或独立应用的成本。",
         },
         {
+          slug: "pomodoro",
           title: "番茄钟",
           detail: "专注计时与休息节奏管理，提升稳定产出。",
           longDetail:
@@ -312,7 +330,14 @@ const dictionaries: Record<Locale, Dict> = {
       ],
       installCta: "Install from Chrome Web Store",
     },
-    common: { installNow: "Install now", viewFeatures: "View features", featuresTitle: "Core features" },
+    common: {
+      installNow: "Install now",
+      viewFeatures: "View features",
+      featuresTitle: "Core features",
+      learnMore: "Learn more",
+      backToFeatures: "Back to features",
+      otherFeatures: "Other features",
+    },
     home: {
       badge: "Chrome Pet Extension",
       title: "Pudding: AI pet companion for translation and productivity",
@@ -329,24 +354,28 @@ const dictionaries: Record<Locale, Dict> = {
         "Pudding is designed to be light, cute, and reliable, blending pet companionship with productivity tools.",
       cards: [
         {
+          slug: "pet",
           title: "Pet Interaction",
           detail: "Light playful feedback while you browse and work.",
           longDetail:
             "A pet can stay in the corner of any page with follow, feed, and pat interactions—draggable so it does not cover main content.",
         },
         {
+          slug: "translation",
           title: "Translation Assistant",
           detail: "Translate selected web content quickly and smoothly.",
           longDetail:
             "Select text to trigger inline translation—ideal for foreign articles, docs, and forums without switching tabs.",
         },
         {
+          slug: "toolbox",
           title: "Toolbox",
           detail: "Useful mini tools in one place to reduce context switching.",
           longDetail:
             "Screenshots, reminders, mini games, and more in one extension panel instead of many separate apps or tabs.",
         },
         {
+          slug: "pomodoro",
           title: "Pomodoro Timer",
           detail: "Keep a stable focus rhythm with work and break cycles.",
           longDetail:
@@ -475,7 +504,14 @@ const dictionaries: Record<Locale, Dict> = {
       ],
       installCta: "Chrome ストアでインストール",
     },
-    common: { installNow: "今すぐインストール", viewFeatures: "機能を見る", featuresTitle: "主な機能" },
+    common: {
+      installNow: "今すぐインストール",
+      viewFeatures: "機能を見る",
+      featuresTitle: "主な機能",
+      learnMore: "詳しく見る",
+      backToFeatures: "機能一覧に戻る",
+      otherFeatures: "その他の機能",
+    },
     home: {
       badge: "Chrome ペット拡張",
       title: "Pudding: 翻訳と生産性を支える AI ペット",
@@ -491,21 +527,25 @@ const dictionaries: Record<Locale, Dict> = {
       intro: "Pudding は軽量でかわいく、信頼できる体験を目指して設計されています。",
       cards: [
         {
+          slug: "pet",
           title: "ペットインタラクション",
           detail: "作業の邪魔をしない軽い反応で寄り添います。",
           longDetail: "任意のページの隅でペットが寄り添い、追従・エサ・なでなでなどの軽い操作ができ、ドラッグで位置を調整できます。",
         },
         {
+          slug: "translation",
           title: "翻訳アシスタント",
           detail: "Web 上のテキストをすばやく翻訳できます。",
           longDetail: "テキストを選択するだけで翻訳を表示。外文の記事やドキュメントを読むときにタブ移動を減らせます。",
         },
         {
+          slug: "toolbox",
           title: "ツールボックス",
           detail: "よく使う小ツールをまとめて利用できます。",
           longDetail: "スクリーンショット、リマインダー、ミニゲームなどを一つのパネルに集約し、作業の切り替えを減らします。",
         },
         {
+          slug: "pomodoro",
           title: "ポモドーロ",
           detail: "作業と休憩のリズムを安定させます。",
           longDetail: "内蔵のポモドーロとタイマーで、長時間の閲覧や作業中も集中と休憩のバランスを保てます。",
@@ -632,7 +672,14 @@ const dictionaries: Record<Locale, Dict> = {
       ],
       installCta: "Chrome 스토어에서 설치",
     },
-    common: { installNow: "지금 설치", viewFeatures: "기능 보기", featuresTitle: "핵심 기능" },
+    common: {
+      installNow: "지금 설치",
+      viewFeatures: "기능 보기",
+      featuresTitle: "핵심 기능",
+      learnMore: "자세히 보기",
+      backToFeatures: "기능 개요로 돌아가기",
+      otherFeatures: "다른 기능",
+    },
     home: {
       badge: "Chrome 펫 확장 프로그램",
       title: "Pudding: 번역과 생산성을 돕는 AI 펫",
@@ -648,21 +695,25 @@ const dictionaries: Record<Locale, Dict> = {
       intro: "Pudding은 가볍고 귀엽고 신뢰할 수 있는 경험을 목표로 합니다.",
       cards: [
         {
+          slug: "pet",
           title: "펫 상호작용",
           detail: "작업 흐름을 방해하지 않는 가벼운 반응을 제공합니다.",
           longDetail: "모든 페이지 구석에서 펫이 함께하며, 따라오기·먹이주기·쓰다듬기 등 가벼운 상호작용과 드래그 이동을 지원합니다.",
         },
         {
+          slug: "translation",
           title: "번역 도우미",
           detail: "웹 텍스트를 빠르고 자연스럽게 번역합니다.",
           longDetail: "텍스트를 선택하면 인라인 번역이 표시되어 외국어 기사와 문서를 읽을 때 탭 전환을 줄일 수 있습니다.",
         },
         {
+          slug: "toolbox",
           title: "도구함",
           detail: "자주 쓰는 미니 도구를 한곳에 모았습니다.",
           longDetail: "스크린샷, 알림, 미니 게임 등을 하나의 패널에 모아 여러 앱이나 탭을 오가는 비용을 줄입니다.",
         },
         {
+          slug: "pomodoro",
           title: "포모도로",
           detail: "작업/휴식 리듬을 안정적으로 유지합니다.",
           longDetail: "내장 포모도로와 타이머로 장시간 브라우징·작업 중에도 집중과 휴식의 균형을 유지할 수 있습니다.",
@@ -792,7 +843,14 @@ const dictionaries: Record<Locale, Dict> = {
       ],
       installCta: "Instalar na Chrome Web Store",
     },
-    common: { installNow: "Instalar agora", viewFeatures: "Ver recursos", featuresTitle: "Recursos principais" },
+    common: {
+      installNow: "Instalar agora",
+      viewFeatures: "Ver recursos",
+      featuresTitle: "Recursos principais",
+      learnMore: "Saiba mais",
+      backToFeatures: "Voltar aos recursos",
+      otherFeatures: "Outros recursos",
+    },
     home: {
       badge: "Extensão pet para Chrome",
       title: "Pudding: pet de IA para tradução e produtividade",
@@ -808,24 +866,28 @@ const dictionaries: Record<Locale, Dict> = {
       intro: "O Pudding foi criado para ser leve, fofo e confiável no dia a dia.",
       cards: [
         {
+          slug: "pet",
           title: "Interação com pet",
           detail: "Feedbacks leves e agradáveis durante o uso.",
           longDetail:
             "Um pet pode ficar no canto de qualquer página com seguir, alimentar e acariciar—arrastável para não cobrir o conteúdo.",
         },
         {
+          slug: "translation",
           title: "Assistente de tradução",
           detail: "Traduza textos da web de forma rápida.",
           longDetail:
             "Selecione texto para tradução inline—ideal para artigos e documentos em outros idiomas sem trocar de aba.",
         },
         {
+          slug: "toolbox",
           title: "Caixa de ferramentas",
           detail: "Mini ferramentas úteis em um só lugar.",
           longDetail:
             "Capturas de tela, lembretes e mini jogos em um painel, reduzindo apps e abas separados.",
         },
         {
+          slug: "pomodoro",
           title: "Pomodoro",
           detail: "Mantenha um ritmo estável entre foco e pausa.",
           longDetail:

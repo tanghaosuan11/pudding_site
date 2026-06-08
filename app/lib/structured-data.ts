@@ -1,3 +1,4 @@
+import { getFeaturePage, type FeatureSlug } from "@/app/lib/feature-pages-i18n";
 import { getDictionary, type Locale } from "@/app/lib/i18n";
 import { siteConfig } from "@/app/lib/site-content";
 
@@ -25,6 +26,35 @@ export function getFaqPageJsonLd(locale: Locale): Record<string, unknown> {
         text: item.answer,
       },
     })),
+  };
+}
+
+export function getFeaturePageJsonLd(
+  locale: Locale,
+  slug: FeatureSlug,
+): Record<string, unknown> {
+  const page = getFeaturePage(locale, slug);
+  const pageUrl = `${siteConfig.siteUrl}/${locale}/features/${slug}`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: page.seoTitle,
+    description: page.seoDescription,
+    inLanguage: localeToSchemaLanguage(locale),
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: `${siteConfig.siteUrl}/${locale}`,
+    },
+    about: {
+      "@type": "SoftwareApplication",
+      name: siteConfig.name,
+      applicationCategory: "BrowserApplication",
+      operatingSystem: "Chrome, Microsoft Edge",
+    },
   };
 }
 
