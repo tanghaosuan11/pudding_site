@@ -11,7 +11,7 @@ type SiteShellProps = {
   mainClassName?: string;
   labels: {
     nav: { home: string; features: string; download: string; changelog: string };
-    footer: { privacy: string; terms: string; rights: string };
+    footer: { privacy: string; terms: string; faq: string; rights: string };
     pet: { feed: string; pat: string };
   };
 };
@@ -55,6 +55,9 @@ export function SiteShell({ children, locale, mainClassName, labels }: SiteShell
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-6 text-sm text-slate-600">
           <p>© {new Date().getFullYear()} {siteConfig.name}. {labels.footer.rights}</p>
           <div className="flex items-center gap-4">
+            <Link href={localePath(locale, "/faq")} prefetch={false} className="hover:text-indigo-700">
+              {labels.footer.faq}
+            </Link>
             <Link href={localePath(locale, "/privacy")} prefetch={false} className="hover:text-indigo-700">
               {labels.footer.privacy}
             </Link>

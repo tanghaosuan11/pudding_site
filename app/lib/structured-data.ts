@@ -7,6 +7,27 @@ function localeToSchemaLanguage(locale: Locale): string {
   return locale;
 }
 
+export function getFaqPageJsonLd(locale: Locale): Record<string, unknown> {
+  const dict = getDictionary(locale);
+  const pageUrl = `${siteConfig.siteUrl}/${locale}/faq`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    url: pageUrl,
+    inLanguage: localeToSchemaLanguage(locale),
+    mainEntity: dict.faq.items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
 export function getSoftwareApplicationJsonLd(locale: Locale): Record<string, unknown> {
   const dict = getDictionary(locale);
   const pageUrl = `${siteConfig.siteUrl}/${locale}`;
