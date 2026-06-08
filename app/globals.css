@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8faff;
-  --foreground: #1f2540;
-  --pet-primary: #6366f1;
-  --pet-primary-strong: #4f46e5;
-  --pet-soft: #eef2ff;
-  --pet-card: #ffffff;
-  --pet-border: #dbe3ff;
-  --pet-shadow: 0 12px 30px rgba(99, 102, 241, 0.12);
+  --background: #f3f2f0;
+  --foreground: #3d3834;
+  --muted: #6f6760;
+  --pet-primary: #c4845c;
+  --pet-primary-strong: #a66b45;
+  --pet-primary-soft: #f0ebe6;
+  --pet-card: #faf9f7;
+  --pet-border: #e3ddd6;
+  --pet-shadow: 0 4px 14px rgba(45, 40, 35, 0.05);
+  --pet-shadow-hover: 0 6px 18px rgba(45, 40, 35, 0.08);
 }
 
 @theme inline {
@@ -16,7 +18,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-nunito);
   --font-display: var(--font-baloo);
-  --font-cjk: var(--font-noto-sc);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -24,57 +25,181 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family:
+    var(--font-nunito),
     "PingFang SC",
     "Hiragino Sans GB",
     "Microsoft YaHei",
-    var(--font-nunito),
     "Helvetica Neue",
     Arial,
     sans-serif;
-  line-height: 1.45;
+  line-height: 1.55;
+}
+
+.pet-page-bg {
+  background-color: var(--background);
 }
 
 .pet-glass {
-  background: color-mix(in oklab, white 88%, #eef2ff 12%);
-  border: 1px solid color-mix(in oklab, #dbe3ff 80%, white 20%);
-  box-shadow: var(--pet-shadow);
+  background: color-mix(in oklab, var(--pet-card) 94%, var(--background) 6%);
+  border: 1px solid var(--pet-border);
+  box-shadow: none;
 }
 
 .pet-card {
   background: var(--pet-card);
-  border: 1px solid var(--pet-border);
-  border-radius: 1.25rem;
+  border: 1.5px solid var(--pet-border);
+  border-radius: 1.5rem;
   box-shadow: var(--pet-shadow);
 }
 
 .pet-bubble {
-  background: var(--pet-soft);
+  background: var(--pet-primary-soft);
   color: var(--pet-primary-strong);
   border-radius: 999px;
-  border: 1px solid color-mix(in oklab, var(--pet-primary) 30%, white 70%);
+  border: 1px solid var(--pet-border);
 }
 
 .pet-btn-primary {
-  background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+  background: var(--pet-primary-strong);
   color: white;
-  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+  box-shadow: none;
+  border: 1px solid transparent;
 }
 
 .pet-btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 24px rgba(99, 102, 241, 0.35);
+  background: #945a38;
 }
 
-.pet-btn-secondary:hover,
-.pet-card-hover:hover {
-  transform: translateY(-1px);
-  border-color: #a5b4fc;
+.pet-btn-secondary {
+  background: #fffcf8;
+  border: 1.5px solid var(--pet-border);
+  color: #6b5344;
+  box-shadow: 0 4px 12px rgba(201, 106, 31, 0.06);
+}
+
+.pet-btn-secondary:hover {
+  border-color: #e8b88a;
+  color: var(--pet-primary-strong);
+  background: #fff7ef;
 }
 
 .pet-btn-primary,
 .pet-btn-secondary,
 .pet-card-hover {
-  transition: all 180ms ease;
+  transition: all 200ms ease;
+}
+
+.pet-card-hover:hover {
+  border-color: #d4ccc3;
+  box-shadow: var(--pet-shadow-hover);
+}
+
+.pet-link {
+  color: var(--pet-primary-strong);
+}
+
+.pet-link:hover {
+  color: #a8550f;
+}
+
+.pet-nav-link {
+  color: #7a6355;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  transition: all 160ms ease;
+}
+
+.pet-nav-link:hover {
+  color: var(--pet-primary-strong);
+  background: rgba(255, 241, 227, 0.9);
+}
+
+.pet-brand {
+  font-family: var(--font-baloo), var(--font-nunito), sans-serif;
+  letter-spacing: 0.02em;
+  color: var(--pet-primary-strong);
+}
+
+.pet-title {
+  font-family:
+    var(--font-baloo),
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.feature-icon {
+  display: inline-flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.65rem;
+  font-size: 1.1rem;
+  border: 1px solid var(--pet-border);
+}
+
+.feature-icon-sm {
+  height: 2rem;
+  width: 2rem;
+  font-size: 1rem;
+}
+
+.feature-card-pet,
+.feature-card-translation,
+.feature-card-toolbox,
+.feature-card-pomodoro {
+  background: var(--pet-card);
+}
+
+.hero-card {
+  background: var(--pet-card);
+}
+
+.feature-popover {
+  background: var(--pet-card);
+  border: 1px solid var(--pet-border);
+  border-radius: 0.875rem;
+  padding: 0.875rem 1rem;
+  box-shadow: 0 8px 24px rgba(45, 40, 35, 0.12);
+  pointer-events: none;
+}
+
+.feature-popover-arrow {
+  position: absolute;
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  transform: translateX(-50%) rotate(45deg);
+  background: var(--pet-card);
+  border-left: 1px solid var(--pet-border);
+  border-top: 1px solid var(--pet-border);
+}
+
+.feature-popover-arrow-top {
+  top: auto;
+  bottom: -6px;
+  border-left: none;
+  border-top: none;
+  border-right: 1px solid var(--pet-border);
+  border-bottom: 1px solid var(--pet-border);
+}
+
+.pet-select {
+  border: 1.5px solid var(--pet-border);
+  background: #fffcf8;
+  color: #6b5344;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(201, 106, 31, 0.06);
+}
+
+.pet-select:focus {
+  outline: none;
+  border-color: #e8b88a;
+  box-shadow: 0 0 0 3px rgba(232, 135, 58, 0.2);
 }
 
 .pet-blink {
@@ -83,23 +208,6 @@ body {
 
 .pet-pop {
   animation: pet-pop 260ms ease;
-}
-
-/* CJK: system fonts (no multi‑MB webfont download on slow links) */
-.pet-title {
-  font-family:
-    "PingFang SC",
-    "Hiragino Sans GB",
-    "Microsoft YaHei",
-    "Noto Sans SC",
-    sans-serif;
-  letter-spacing: 0.01em;
-}
-
-/* Logo / Latin brand word only */
-.pet-brand {
-  font-family: var(--font-baloo), var(--font-nunito), sans-serif;
-  letter-spacing: 0.02em;
 }
 
 html {
@@ -114,6 +222,12 @@ html {
   .pet-blink,
   .pet-pop {
     animation: none;
+  }
+
+  .pet-btn-primary:hover,
+  .pet-btn-secondary:hover,
+  .pet-card-hover:hover {
+    transform: none;
   }
 }
 
@@ -140,25 +254,49 @@ html {
   }
 }
 
-/* ── Draggable pet ── */
 @keyframes pudding-squash {
-  0%   { transform: scaleX(1.12) scaleY(0.85); }
-  25%  { transform: rotate(4deg) scaleX(0.93) scaleY(1.05); }
-  50%  { transform: rotate(-3deg) scaleX(1.04) scaleY(0.97); }
-  75%  { transform: rotate(1.5deg) scaleX(0.98) scaleY(1.01); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scaleX(1.12) scaleY(0.85);
+  }
+  25% {
+    transform: rotate(4deg) scaleX(0.93) scaleY(1.05);
+  }
+  50% {
+    transform: rotate(-3deg) scaleX(1.04) scaleY(0.97);
+  }
+  75% {
+    transform: rotate(1.5deg) scaleX(0.98) scaleY(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes pudding-land {
-  0%   { transform: scaleX(1.1) scaleY(0.82); }
-  60%  { transform: scaleX(0.94) scaleY(1.06); }
-  85%  { transform: scaleX(1.02) scaleY(0.98); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scaleX(1.1) scaleY(0.82);
+  }
+  60% {
+    transform: scaleX(0.94) scaleY(1.06);
+  }
+  85% {
+    transform: scaleX(1.02) scaleY(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes launch-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50%       { transform: scale(1.15); opacity: 1; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

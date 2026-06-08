@@ -24,28 +24,23 @@ export default async function FaqPage(props: PageProps<"/[locale]/faq">) {
   return (
     <SiteShell locale={currentLocale} labels={dict}>
       <JsonLd data={jsonLd} />
-      <section className="max-w-3xl space-y-8">
-        <div className="space-y-3">
-          <h1 className="pet-title text-3xl font-semibold text-slate-900">{dict.faq.title}</h1>
-          <p className="text-slate-600">{dict.faq.intro}</p>
-        </div>
-        <div className="space-y-4">
+      <section className="max-w-lg space-y-5">
+        <h1 className="pet-title text-xl font-semibold">{dict.faq.title}</h1>
+        <dl className="space-y-4">
           {dict.faq.items.map((item) => (
-            <article key={item.question} className="pet-card rounded-2xl p-6">
-              <h2 className="pet-title text-lg font-medium text-indigo-700">{item.question}</h2>
-              <p className="mt-3 text-slate-600">{item.answer}</p>
-            </article>
+            <div key={item.question} className="border-b border-[var(--pet-border)] pb-4 last:border-0">
+              <dt className="text-sm font-medium text-[var(--foreground)]">{item.question}</dt>
+              <dd className="mt-1 text-sm text-[var(--muted)]">{item.answer}</dd>
+            </div>
           ))}
-        </div>
-        <div>
-          <Link
-            href="/go?target=chrome&from=faq"
-            prefetch={false}
-            className="pet-btn-primary inline-flex rounded-full px-6 py-3 text-sm font-semibold"
-          >
-            {dict.faq.installCta}
-          </Link>
-        </div>
+        </dl>
+        <Link
+          href="/go?target=chrome&from=faq"
+          prefetch={false}
+          className="pet-btn-primary inline-flex rounded-full px-5 py-2.5 text-sm font-medium"
+        >
+          {dict.faq.installCta}
+        </Link>
       </section>
     </SiteShell>
   );

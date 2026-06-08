@@ -21,7 +21,13 @@ type Dict = {
     keywords: string[];
   };
   nav: { home: string; features: string; download: string; changelog: string };
-  footer: { privacy: string; terms: string; faq: string; rights: string };
+  footer: {
+    privacy: string;
+    terms: string;
+    faq: string;
+    rights: string;
+    chromeOfficial: string;
+  };
   faq: {
     seoTitle: string;
     seoDescription: string;
@@ -35,6 +41,7 @@ type Dict = {
     viewFeatures: string;
     featuresTitle: string;
     learnMore: string;
+    close: string;
     backToFeatures: string;
     otherFeatures: string;
   };
@@ -46,7 +53,7 @@ type Dict = {
   };
   features: {
     intro: string;
-    cards: { slug: string; title: string; detail: string; longDetail: string }[];
+    cards: { slug: string; title: string; detail: string; longDetail: string; points: string[] }[];
   };
   download: {
     intro: string;
@@ -105,52 +112,39 @@ const dictionaries: Record<Locale, Dict> = {
       ],
     },
     nav: { home: "首页", features: "功能", download: "下载", changelog: "更新日志" },
-    footer: { privacy: "隐私政策", terms: "使用条款", faq: "常见问题", rights: "版权所有" },
+    footer: {
+      privacy: "隐私政策",
+      terms: "使用条款",
+      faq: "常见问题",
+      rights: "版权所有",
+      chromeOfficial: "Chrome 商店官方扩展",
+    },
     faq: {
       seoTitle: "常见问题 | Chrome 桌面宠物插件 Pudding",
       seoDescription:
         "关于 Pudding Chrome 扩展的安装、划词翻译、桌面宠物、隐私与 Chrome 网上应用店下载的常见问题解答。",
       title: "常见问题",
-      intro: "以下是安装与使用 Pudding 桌面宠物 Chrome 插件时最常见的问题。",
+      intro: "",
       items: [
         {
-          question: "Pudding 是什么？适合谁用？",
-          answer:
-            "Pudding（Puddpet）是一款 Chrome 桌面宠物扩展，在浏览任意网页时提供轻量宠物陪伴，并集成划词翻译、番茄钟与效率工具箱。适合需要跨语言阅读、希望提升专注力、又喜欢可爱桌面宠物的用户。",
+          question: "Pudding 是什么？",
+          answer: "Chrome 桌面宠物扩展，带划词翻译、番茄钟和工具箱。",
         },
         {
-          question: "如何安装 Pudding？",
-          answer:
-            "推荐通过 Chrome 网上应用店一键安装：点击官网「立即安装」按钮，会跳转到官方商店页面。安装后点击浏览器工具栏中的 Pudding 图标即可启用。也支持从 GitHub Releases 下载压缩包进行手动安装（适合开发者或内测场景）。",
+          question: "怎么安装？",
+          answer: "点「立即安装」跳转 Chrome 商店，安装后点工具栏图标即可。",
         },
         {
-          question: "Pudding 免费吗？",
-          answer: "Pudding 扩展本身免费下载使用。部分 AI 相关能力可能依赖你自行配置的服务商与额度，具体以扩展内设置为准。",
+          question: "免费吗？",
+          answer: "扩展免费。部分 AI 功能需在扩展内自行配置服务商。",
         },
         {
           question: "支持哪些浏览器？",
-          answer:
-            "官方首发渠道为 Chrome（114+）。基于 Chromium 的 Microsoft Edge（114+）通常也可安装 Chrome 扩展。其他浏览器需查看各自扩展生态是否兼容 Manifest V3 扩展。",
+          answer: "Chrome 114+，Edge 114+ 通常也可用。",
         },
         {
-          question: "划词翻译怎么用？",
-          answer:
-            "在网页中选中需要翻译的文本，Pudding 会以气泡或面板形式展示翻译结果，无需离开当前页面。适合阅读外文文章、文档与社区内容时快速理解段落含义。",
-        },
-        {
-          question: "桌面宠物会不会干扰工作或学习？",
-          answer:
-            "Pudding 以轻量互动为设计目标：宠物可在页面角落陪伴，支持拖动与收纳，番茄钟与工具箱也集成在同一面板中。你可以在扩展设置中调整显示与行为，减少打扰。",
-        },
-        {
-          question: "Pudding 会收集我的个人数据吗？",
-          answer:
-            "官网仅用于产品展示与下载引导，默认不收集可识别个人身份的信息。扩展内的数据处理方式（如本地存储、可选 AI 服务等）详见隐私政策页面；你可以在扩展设置中关闭不需要的功能。",
-        },
-        {
-          question: "官网和 Chrome 商店是什么关系？",
-          answer:
-            "puddpet.com 是 Pudding 的官方介绍与下载引导站，最终安装仍通过 Chrome 网上应用店完成。官网提供多语言功能说明、更新日志与隐私条款，帮助你在安装前了解产品，也有利于搜索引擎与 AI 助手准确引用官方信息。",
+          question: "会收集个人数据吗？",
+          answer: "官网不收集个人信息。扩展数据处理见隐私政策。",
         },
       ],
       installCta: "前往 Chrome 商店安装",
@@ -160,6 +154,7 @@ const dictionaries: Record<Locale, Dict> = {
       viewFeatures: "查看功能",
       featuresTitle: "核心能力",
       learnMore: "了解更多",
+      close: "关闭",
       backToFeatures: "返回功能概览",
       otherFeatures: "其他功能",
     },
@@ -175,7 +170,7 @@ const dictionaries: Record<Locale, Dict> = {
       ],
     },
     features: {
-      intro: "Pudding 以轻量、可爱、可信为目标，把宠物陪伴与效率工具融合到浏览体验中。",
+      intro: "宠物陪伴与效率工具，集于一个扩展。",
       cards: [
         {
           slug: "pet",
@@ -183,6 +178,11 @@ const dictionaries: Record<Locale, Dict> = {
           detail: "浏览时有轻量互动反馈，让工作学习更有陪伴感。",
           longDetail:
             "宠物可在任意网页角落陪伴，支持跟随、喂食、摸头等轻量互动，并可拖动到合适位置，不遮挡主要内容区域。",
+          points: [
+            "跟随鼠标、喂食、摸头等轻量互动",
+            "可拖到角落或收起，尽量不挡正文",
+            "与翻译、番茄钟等同属一个扩展",
+          ],
         },
         {
           slug: "translation",
@@ -190,6 +190,11 @@ const dictionaries: Record<Locale, Dict> = {
           detail: "快速翻译网页文本，降低跨语言阅读成本。",
           longDetail:
             "选中页面文字即可触发划词翻译，适合阅读外文资讯、技术文档与社区帖子，减少在翻译网站与当前页之间来回切换。",
+          points: [
+            "选中文字即可显示译文气泡",
+            "无需跳转翻译网站或新开标签",
+            "适合文章、文档、论坛等阅读场景",
+          ],
         },
         {
           slug: "toolbox",
@@ -197,6 +202,11 @@ const dictionaries: Record<Locale, Dict> = {
           detail: "集合常用小工具，减少频繁切换页面和应用。",
           longDetail:
             "将截图、提醒、小游戏等常用能力收纳在同一扩展面板中，降低打开多个标签页或独立应用的成本。",
+          points: [
+            "截图、提醒等常用能力集中在一处",
+            "内置小游戏，适合短暂休息",
+            "少装扩展，减轻浏览器负担",
+          ],
         },
         {
           slug: "pomodoro",
@@ -204,6 +214,11 @@ const dictionaries: Record<Locale, Dict> = {
           detail: "专注计时与休息节奏管理，提升稳定产出。",
           longDetail:
             "内置番茄钟与计时提醒，帮助你在长时间浏览或办公时保持专注与休息节奏，与宠物陪伴场景自然结合。",
+          points: [
+            "可配置专注时长与休息间隔",
+            "到点提醒，避免无意识刷网页",
+            "在浏览器内完成，不必另开 App",
+          ],
         },
       ],
     },
@@ -279,53 +294,39 @@ const dictionaries: Record<Locale, Dict> = {
       ],
     },
     nav: { home: "Home", features: "Features", download: "Download", changelog: "Changelog" },
-    footer: { privacy: "Privacy", terms: "Terms", faq: "FAQ", rights: "All rights reserved" },
+    footer: {
+      privacy: "Privacy",
+      terms: "Terms",
+      faq: "FAQ",
+      rights: "All rights reserved",
+      chromeOfficial: "Official Chrome Web Store extension",
+    },
     faq: {
       seoTitle: "FAQ | Pudding Desktop Pet Chrome Extension",
       seoDescription:
         "Answers about installing Pudding, selection translation, the desktop pet, privacy, and downloading from the Chrome Web Store.",
       title: "Frequently Asked Questions",
-      intro: "Common questions about installing and using the Pudding desktop pet Chrome extension.",
+      intro: "",
       items: [
         {
-          question: "What is Pudding and who is it for?",
-          answer:
-            "Pudding (Puddpet) is a Chrome desktop pet extension that adds a light companion on any webpage, plus selection translation, a Pomodoro timer, and a productivity toolbox. It suits readers who work across languages and want focus tools with a playful pet experience.",
+          question: "What is Pudding?",
+          answer: "A Chrome desktop pet extension with translate, Pomodoro, and tools.",
         },
         {
-          question: "How do I install Pudding?",
-          answer:
-            "Use the Chrome Web Store for the recommended one-click install via the “Install now” button on this site. After install, click the Pudding icon in your toolbar. Manual install from GitHub Releases is also available for developers or sideloading.",
+          question: "How do I install?",
+          answer: 'Click "Install now" to open the Chrome Web Store, then pin the icon.',
         },
         {
-          question: "Is Pudding free?",
-          answer:
-            "The extension is free to download and use. Some AI-powered features may depend on providers and quotas you configure inside the extension.",
+          question: "Is it free?",
+          answer: "Yes. Some AI features need providers you configure in settings.",
         },
         {
-          question: "Which browsers are supported?",
-          answer:
-            "Chrome 114+ is the primary channel. Chromium-based Microsoft Edge 114+ usually supports the same extension. Other browsers depend on their Manifest V3 extension support.",
+          question: "Which browsers?",
+          answer: "Chrome 114+. Edge 114+ usually works too.",
         },
         {
-          question: "How does selection translation work?",
-          answer:
-            "Select text on any page and Pudding shows a translation bubble or panel without leaving the page—useful for articles, docs, and community posts in foreign languages.",
-        },
-        {
-          question: "Will the desktop pet distract me?",
-          answer:
-            "Pudding is designed for light interaction: the pet can stay in a corner, be dragged aside, or tucked away while Pomodoro and tools live in the same panel. Adjust behavior in extension settings to reduce interruptions.",
-        },
-        {
-          question: "Does Pudding collect personal data?",
-          answer:
-            "This website is for showcase and download guidance only and does not collect personally identifiable information by default. See the privacy policy for how the extension handles local storage and optional AI services—you can disable features you do not need.",
-        },
-        {
-          question: "How does this site relate to the Chrome Web Store?",
-          answer:
-            "puddpet.com is the official product site with multilingual docs, changelog, and legal pages. Actual installation happens on the Chrome Web Store; the site helps users understand the product before install and gives search engines a canonical source of truth.",
+          question: "Privacy?",
+          answer: "This site collects no personal data. See the privacy policy for the extension.",
         },
       ],
       installCta: "Install from Chrome Web Store",
@@ -335,6 +336,7 @@ const dictionaries: Record<Locale, Dict> = {
       viewFeatures: "View features",
       featuresTitle: "Core features",
       learnMore: "Learn more",
+      close: "Close",
       backToFeatures: "Back to features",
       otherFeatures: "Other features",
     },
@@ -350,8 +352,7 @@ const dictionaries: Record<Locale, Dict> = {
       ],
     },
     features: {
-      intro:
-        "Pudding is designed to be light, cute, and reliable, blending pet companionship with productivity tools.",
+      intro: "Pet companion and productivity tools in one extension.",
       cards: [
         {
           slug: "pet",
@@ -359,6 +360,11 @@ const dictionaries: Record<Locale, Dict> = {
           detail: "Light playful feedback while you browse and work.",
           longDetail:
             "A pet can stay in the corner of any page with follow, feed, and pat interactions—draggable so it does not cover main content.",
+          points: [
+            "Follow, feed, and pat without leaving the page",
+            "Drag to a corner or tuck away when focusing",
+            "Lives in the same extension as translate and Pomodoro",
+          ],
         },
         {
           slug: "translation",
@@ -366,6 +372,11 @@ const dictionaries: Record<Locale, Dict> = {
           detail: "Translate selected web content quickly and smoothly.",
           longDetail:
             "Select text to trigger inline translation—ideal for foreign articles, docs, and forums without switching tabs.",
+          points: [
+            "Selection shows a translation bubble in place",
+            "No extra tab or translation site needed",
+            "Great for articles, docs, and forum threads",
+          ],
         },
         {
           slug: "toolbox",
@@ -373,6 +384,11 @@ const dictionaries: Record<Locale, Dict> = {
           detail: "Useful mini tools in one place to reduce context switching.",
           longDetail:
             "Screenshots, reminders, mini games, and more in one extension panel instead of many separate apps or tabs.",
+          points: [
+            "Screenshots and reminders in one panel",
+            "Mini games for short breaks",
+            "Fewer extensions cluttering the toolbar",
+          ],
         },
         {
           slug: "pomodoro",
@@ -380,6 +396,11 @@ const dictionaries: Record<Locale, Dict> = {
           detail: "Keep a stable focus rhythm with work and break cycles.",
           longDetail:
             "Built-in Pomodoro and timers help you balance focus and breaks while browsing or working alongside your pet.",
+          points: [
+            "Configurable focus and break blocks",
+            "Alerts when a block ends",
+            "Stays in the browser—no separate app",
+          ],
         },
       ],
     },
@@ -455,52 +476,25 @@ const dictionaries: Record<Locale, Dict> = {
       ],
     },
     nav: { home: "ホーム", features: "機能", download: "ダウンロード", changelog: "更新履歴" },
-    footer: { privacy: "プライバシー", terms: "利用規約", faq: "よくある質問", rights: "無断転載を禁じます" },
+    footer: {
+      privacy: "プライバシー",
+      terms: "利用規約",
+      faq: "よくある質問",
+      rights: "無断転載を禁じます",
+      chromeOfficial: "Chrome ウェブストア公式拡張",
+    },
     faq: {
       seoTitle: "よくある質問 | Pudding Chrome デスクトップペット拡張",
       seoDescription:
         "Pudding のインストール、選択翻訳、デスクトップペット、プライバシー、Chrome ウェブストアからのダウンロードに関する FAQ。",
       title: "よくある質問",
-      intro: "Pudding デスクトップペット Chrome 拡張のインストールと利用に関するよくある質問です。",
+      intro: "",
       items: [
-        {
-          question: "Pudding とは？どんな人向け？",
-          answer:
-            "Pudding（Puddpet）は、任意の Web ページに軽いペット体験を加え、選択翻訳・ポモドーロ・ツールボックスを備えた Chrome 拡張です。多言語で読む作業や集中を高めたい方に向いています。",
-        },
-        {
-          question: "インストール方法は？",
-          answer:
-            "公式サイトの「今すぐインストール」から Chrome ウェブストアへ移動し、ワンクリックで追加するのが推奨です。開発者向けに GitHub Releases からの手動インストールも可能です。",
-        },
-        {
-          question: "無料で使えますか？",
-          answer:
-            "拡張機能本体は無料です。AI 関連機能は拡張内で設定するプロバイダと利用枠に依存する場合があります。",
-        },
-        {
-          question: "対応ブラウザは？",
-          answer: "Chrome 114+ が主要チャネルです。Chromium ベースの Microsoft Edge 114+ でも多くの場合利用できます。",
-        },
-        {
-          question: "選択翻訳の使い方は？",
-          answer: "ページ上のテキストを選択すると、翻訳結果がバブルやパネルで表示され、タブを切り替えずに読めます。",
-        },
-        {
-          question: "ペットは作業の邪魔になりませんか？",
-          answer:
-            "軽いインタラクションを前提に設計され、隅に置いたりドラッグで移動できます。拡張の設定で表示や動作を調整できます。",
-        },
-        {
-          question: "個人データは収集されますか？",
-          answer:
-            "本サイトは紹介とダウンロード案内のみで、原則として個人を特定できる情報は収集しません。拡張内の取り扱いはプライバシーポリシーをご確認ください。",
-        },
-        {
-          question: "公式サイトと Chrome ストアの関係は？",
-          answer:
-            "puddpet.com は公式の製品説明サイトで、実際のインストールは Chrome ウェブストアで行います。多言語の説明と更新履歴が検索エンジンや AI に正確な情報源となります。",
-        },
+        { question: "Pudding とは？", answer: "Chrome デスクトップペット拡張。翻訳・ポモドーロ・ツール付き。" },
+        { question: "インストールは？", answer: "「今すぐインストール」から Chrome ストアで追加。" },
+        { question: "無料？", answer: "拡張は無料。AI は設定次第。" },
+        { question: "対応ブラウザ？", answer: "Chrome 114+、Edge 114+ も可。" },
+        { question: "プライバシー？", answer: "サイトは個人情報を収集しません。詳細はプライバシーポリシー。" },
       ],
       installCta: "Chrome ストアでインストール",
     },
@@ -509,6 +503,7 @@ const dictionaries: Record<Locale, Dict> = {
       viewFeatures: "機能を見る",
       featuresTitle: "主な機能",
       learnMore: "詳しく見る",
+      close: "閉じる",
       backToFeatures: "機能一覧に戻る",
       otherFeatures: "その他の機能",
     },
@@ -524,31 +519,51 @@ const dictionaries: Record<Locale, Dict> = {
       ],
     },
     features: {
-      intro: "Pudding は軽量でかわいく、信頼できる体験を目指して設計されています。",
+      intro: "ペット体験と効率ツールを一つの拡張に。",
       cards: [
         {
           slug: "pet",
           title: "ペットインタラクション",
           detail: "作業の邪魔をしない軽い反応で寄り添います。",
           longDetail: "任意のページの隅でペットが寄り添い、追従・エサ・なでなでなどの軽い操作ができ、ドラッグで位置を調整できます。",
+          points: [
+            "追従・エサ・なでななどの軽い操作",
+            "隅に置いたりドラッグして邪魔にならない位置へ",
+            "翻訳やポモドーロと同じ拡張機能内",
+          ],
         },
         {
           slug: "translation",
           title: "翻訳アシスタント",
           detail: "Web 上のテキストをすばやく翻訳できます。",
           longDetail: "テキストを選択するだけで翻訳を表示。外文の記事やドキュメントを読むときにタブ移動を減らせます。",
+          points: [
+            "選択した文字列の訳をバブルで表示",
+            "翻訳サイトへの移動が不要",
+            "記事・ドキュメント・フォーラム向け",
+          ],
         },
         {
           slug: "toolbox",
           title: "ツールボックス",
           detail: "よく使う小ツールをまとめて利用できます。",
           longDetail: "スクリーンショット、リマインダー、ミニゲームなどを一つのパネルに集約し、作業の切り替えを減らします。",
+          points: [
+            "スクショやリマインダーを一箇所に",
+            "短い休憩用のミニゲーム",
+            "拡張機能の乱立を防ぐ",
+          ],
         },
         {
           slug: "pomodoro",
           title: "ポモドーロ",
           detail: "作業と休憩のリズムを安定させます。",
           longDetail: "内蔵のポモドーロとタイマーで、長時間の閲覧や作業中も集中と休憩のバランスを保てます。",
+          points: [
+            "集中・休憩の時間を設定可能",
+            "終了時に通知",
+            "ブラウザ内で完結",
+          ],
         },
       ],
     },
@@ -624,51 +639,25 @@ const dictionaries: Record<Locale, Dict> = {
       ],
     },
     nav: { home: "홈", features: "기능", download: "다운로드", changelog: "업데이트 내역" },
-    footer: { privacy: "개인정보처리방침", terms: "이용약관", faq: "자주 묻는 질문", rights: "모든 권리 보유" },
+    footer: {
+      privacy: "개인정보처리방침",
+      terms: "이용약관",
+      faq: "자주 묻는 질문",
+      rights: "모든 권리 보유",
+      chromeOfficial: "Chrome 웹 스토어 공식 확장",
+    },
     faq: {
       seoTitle: "자주 묻는 질문 | Pudding Chrome 데스크톱 펫 확장",
       seoDescription:
         "Pudding 설치, 선택 번역, 데스크톱 펫, 개인정보, Chrome 웹 스토어 다운로드에 대한 FAQ.",
       title: "자주 묻는 질문",
-      intro: "Pudding 데스크톱 펫 Chrome 확장 프로그램 설치 및 사용에 관한 일반적인 질문입니다.",
+      intro: "",
       items: [
-        {
-          question: "Pudding이란 무엇이며 누구에게 적합한가요?",
-          answer:
-            "Pudding(Puddpet)은 모든 웹페이지에 가벼운 펫 동반 경험과 선택 번역, 포모도로, 도구함을 제공하는 Chrome 확장입니다. 다국어 읽기와 집중 도구가 필요한 사용자에게 적합합니다.",
-        },
-        {
-          question: "어떻게 설치하나요?",
-          answer:
-            "이 사이트의 「지금 설치」 버튼으로 Chrome 웹 스토어에서 원클릭 설치하는 것을 권장합니다. 개발자는 GitHub Releases에서 수동 설치도 가능합니다.",
-        },
-        {
-          question: "무료인가요?",
-          answer: "확장 프로그램 자체는 무료입니다. AI 기능은 확장 내에서 설정한 제공자와 할당량에 따라 달라질 수 있습니다.",
-        },
-        {
-          question: "어떤 브라우저를 지원하나요?",
-          answer: "Chrome 114+가 주 채널이며, Chromium 기반 Microsoft Edge 114+에서도 대부분 사용할 수 있습니다.",
-        },
-        {
-          question: "선택 번역은 어떻게 사용하나요?",
-          answer: "페이지에서 텍스트를 선택하면 번역 버블이나 패널로 결과가 표시되어 탭 전환 없이 읽을 수 있습니다.",
-        },
-        {
-          question: "데스크톱 펫이 작업을 방해하나요?",
-          answer:
-            "가벼운 상호작용을 전제로 설계되었으며, 구석에 두거나 드래그해 이동할 수 있습니다. 확장 설정에서 동작을 조절할 수 있습니다.",
-        },
-        {
-          question: "개인 데이터를 수집하나요?",
-          answer:
-            "이 웹사이트는 소개와 다운로드 안내용이며 기본적으로 개인 식별 정보를 수집하지 않습니다. 확장의 데이터 처리는 개인정보처리방침을 참고하세요.",
-        },
-        {
-          question: "공식 사이트와 Chrome 스토어의 관계는?",
-          answer:
-            "puddpet.com은 공식 제품 소개 사이트이며, 실제 설치는 Chrome 웹 스토어에서 이루어집니다. 다국어 문서와 changelog가 검색·AI 인용의 공식 출처가 됩니다.",
-        },
+        { question: "Pudding이란?", answer: "Chrome 데스크톱 펫 확장. 번역·포모도로·도구함 포함." },
+        { question: "설치 방법?", answer: "「지금 설치」로 Chrome 스토어에서 추가." },
+        { question: "무료?", answer: "확장은 무료. AI는 설정에 따름." },
+        { question: "지원 브라우저?", answer: "Chrome 114+, Edge 114+ 가능." },
+        { question: "개인정보?", answer: "사이트는 개인정보를 수집하지 않습니다. 확장은 개인정보처리방침 참고." },
       ],
       installCta: "Chrome 스토어에서 설치",
     },
@@ -677,6 +666,7 @@ const dictionaries: Record<Locale, Dict> = {
       viewFeatures: "기능 보기",
       featuresTitle: "핵심 기능",
       learnMore: "자세히 보기",
+      close: "닫기",
       backToFeatures: "기능 개요로 돌아가기",
       otherFeatures: "다른 기능",
     },
@@ -692,31 +682,51 @@ const dictionaries: Record<Locale, Dict> = {
       ],
     },
     features: {
-      intro: "Pudding은 가볍고 귀엽고 신뢰할 수 있는 경험을 목표로 합니다.",
+      intro: "펫 동반과 생산성 도구를 하나의 확장에.",
       cards: [
         {
           slug: "pet",
           title: "펫 상호작용",
           detail: "작업 흐름을 방해하지 않는 가벼운 반응을 제공합니다.",
           longDetail: "모든 페이지 구석에서 펫이 함께하며, 따라오기·먹이주기·쓰다듬기 등 가벼운 상호작용과 드래그 이동을 지원합니다.",
+          points: [
+            "따라오기·먹이주기·쓰다듬기 등 가벼운 상호작용",
+            "구석으로 옮겨 본문을 가리지 않음",
+            "번역·포모도로와 같은 확장 프로그램",
+          ],
         },
         {
           slug: "translation",
           title: "번역 도우미",
           detail: "웹 텍스트를 빠르고 자연스럽게 번역합니다.",
           longDetail: "텍스트를 선택하면 인라인 번역이 표시되어 외국어 기사와 문서를 읽을 때 탭 전환을 줄일 수 있습니다.",
+          points: [
+            "선택한 텍스트의 번역을 버블로 표시",
+            "번역 사이트로 이동할 필요 없음",
+            "기사·문서·포럼 읽기에 적합",
+          ],
         },
         {
           slug: "toolbox",
           title: "도구함",
           detail: "자주 쓰는 미니 도구를 한곳에 모았습니다.",
           longDetail: "스크린샷, 알림, 미니 게임 등을 하나의 패널에 모아 여러 앱이나 탭을 오가는 비용을 줄입니다.",
+          points: [
+            "스크린샷·알림 등을 한 패널에",
+            "짧은 휴식용 미니 게임",
+            "확장 프로그램 난립 감소",
+          ],
         },
         {
           slug: "pomodoro",
           title: "포모도로",
           detail: "작업/휴식 리듬을 안정적으로 유지합니다.",
           longDetail: "내장 포모도로와 타이머로 장시간 브라우징·작업 중에도 집중과 휴식의 균형을 유지할 수 있습니다.",
+          points: [
+            "집중·휴식 시간 블록 설정",
+            "종료 시 알림",
+            "브라우저 안에서 사용",
+          ],
         },
       ],
     },
@@ -792,54 +802,25 @@ const dictionaries: Record<Locale, Dict> = {
       ],
     },
     nav: { home: "Início", features: "Recursos", download: "Baixar", changelog: "Changelog" },
-    footer: { privacy: "Privacidade", terms: "Termos", faq: "Perguntas frequentes", rights: "Todos os direitos reservados" },
+    footer: {
+      privacy: "Privacidade",
+      terms: "Termos",
+      faq: "Perguntas frequentes",
+      rights: "Todos os direitos reservados",
+      chromeOfficial: "Extensão oficial na Chrome Web Store",
+    },
     faq: {
       seoTitle: "Perguntas frequentes | Extensão Pudding pet desktop Chrome",
       seoDescription:
         "Respostas sobre instalação do Pudding, tradução por seleção, pet de desktop, privacidade e download na Chrome Web Store.",
       title: "Perguntas frequentes",
-      intro: "Perguntas comuns sobre instalar e usar a extensão Pudding pet de desktop para Chrome.",
+      intro: "",
       items: [
-        {
-          question: "O que é o Pudding e para quem é?",
-          answer:
-            "Pudding (Puddpet) é uma extensão Chrome com pet de desktop leve em qualquer página, tradução por seleção, Pomodoro e caixa de ferramentas. Indicado para quem lê em vários idiomas e quer foco com uma experiência divertida.",
-        },
-        {
-          question: "Como instalar o Pudding?",
-          answer:
-            "Recomendamos instalar pela Chrome Web Store com o botão “Instalar agora” neste site. Instalação manual via GitHub Releases também está disponível para desenvolvedores.",
-        },
-        {
-          question: "O Pudding é gratuito?",
-          answer:
-            "A extensão é gratuita. Recursos de IA podem depender de provedores e cotas configurados dentro da extensão.",
-        },
-        {
-          question: "Quais navegadores são suportados?",
-          answer:
-            "Chrome 114+ é o canal principal. Microsoft Edge 114+ baseado em Chromium geralmente também funciona.",
-        },
-        {
-          question: "Como funciona a tradução por seleção?",
-          answer:
-            "Selecione texto na página e o Pudding mostra a tradução em bolha ou painel sem sair da aba atual.",
-        },
-        {
-          question: "O pet vai atrapalhar meu trabalho?",
-          answer:
-            "Foi pensado para interação leve: o pet pode ficar no canto, ser arrastado ou ajustado nas configurações da extensão.",
-        },
-        {
-          question: "O Pudding coleta dados pessoais?",
-          answer:
-            "Este site é apenas para apresentação e download e não coleta dados pessoais identificáveis por padrão. Veja a política de privacidade para o tratamento de dados na extensão.",
-        },
-        {
-          question: "Qual a relação entre o site e a Chrome Web Store?",
-          answer:
-            "puddpet.com é o site oficial com documentação multilíngue e changelog; a instalação real ocorre na Chrome Web Store.",
-        },
+        { question: "O que é o Pudding?", answer: "Extensão Chrome com pet, tradução, Pomodoro e ferramentas." },
+        { question: "Como instalar?", answer: 'Clique em "Instalar agora" na Chrome Web Store.' },
+        { question: "É grátis?", answer: "Sim. IA depende do que você configurar." },
+        { question: "Navegadores?", answer: "Chrome 114+. Edge 114+ geralmente funciona." },
+        { question: "Privacidade?", answer: "O site não coleta dados pessoais. Veja a política de privacidade." },
       ],
       installCta: "Instalar na Chrome Web Store",
     },
@@ -848,6 +829,7 @@ const dictionaries: Record<Locale, Dict> = {
       viewFeatures: "Ver recursos",
       featuresTitle: "Recursos principais",
       learnMore: "Saiba mais",
+      close: "Fechar",
       backToFeatures: "Voltar aos recursos",
       otherFeatures: "Outros recursos",
     },
@@ -863,7 +845,7 @@ const dictionaries: Record<Locale, Dict> = {
       ],
     },
     features: {
-      intro: "O Pudding foi criado para ser leve, fofo e confiável no dia a dia.",
+      intro: "Pet e ferramentas de produtividade em uma extensão.",
       cards: [
         {
           slug: "pet",
@@ -871,6 +853,11 @@ const dictionaries: Record<Locale, Dict> = {
           detail: "Feedbacks leves e agradáveis durante o uso.",
           longDetail:
             "Um pet pode ficar no canto de qualquer página com seguir, alimentar e acariciar—arrastável para não cobrir o conteúdo.",
+          points: [
+            "Seguir, alimentar e acariciar sem sair da página",
+            "Arraste para o canto quando precisar de foco",
+            "Mesma extensão da tradução e do Pomodoro",
+          ],
         },
         {
           slug: "translation",
@@ -878,6 +865,11 @@ const dictionaries: Record<Locale, Dict> = {
           detail: "Traduza textos da web de forma rápida.",
           longDetail:
             "Selecione texto para tradução inline—ideal para artigos e documentos em outros idiomas sem trocar de aba.",
+          points: [
+            "Bolha de tradução ao selecionar texto",
+            "Sem site de tradução ou aba extra",
+            "Bom para artigos, docs e fóruns",
+          ],
         },
         {
           slug: "toolbox",
@@ -885,6 +877,11 @@ const dictionaries: Record<Locale, Dict> = {
           detail: "Mini ferramentas úteis em um só lugar.",
           longDetail:
             "Capturas de tela, lembretes e mini jogos em um painel, reduzindo apps e abas separados.",
+          points: [
+            "Capturas e lembretes num painel",
+            "Mini jogos para pausas curtas",
+            "Menos extensões na barra",
+          ],
         },
         {
           slug: "pomodoro",
@@ -892,6 +889,11 @@ const dictionaries: Record<Locale, Dict> = {
           detail: "Mantenha um ritmo estável entre foco e pausa.",
           longDetail:
             "Pomodoro e timers integrados ajudam a equilibrar foco e pausas durante navegação e trabalho.",
+          points: [
+            "Blocos de foco e pausa configuráveis",
+            "Alerta ao fim de cada bloco",
+            "Funciona dentro do navegador",
+          ],
         },
       ],
     },

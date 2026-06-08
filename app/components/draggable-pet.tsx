@@ -494,7 +494,7 @@ export function DraggablePet({ labels }: { labels: { feed: string; pat: string }
           height: "auto",
           transform: imgAnim ? undefined : `rotate(${rs.tilt}deg)`,
           filter: isActive
-            ? "drop-shadow(0 8px 12px rgba(99,102,241,0.45))"
+            ? "drop-shadow(0 8px 12px rgba(232,135,58,0.45))"
             : "drop-shadow(2px 2px 4px rgba(0,0,0,0.22))",
           transition: isActive
             ? "filter 0.1s ease"
@@ -554,8 +554,8 @@ export function DraggablePet({ labels }: { labels: { feed: string; pat: string }
                 padding: "5px 12px",
                 borderRadius: 10,
                 border: "none",
-                background: "rgba(99,102,241,0.1)",
-                color: "#3730a3",
+                background: "rgba(232,135,58,0.12)",
+                color: "#a8550f",
                 fontSize: 13,
                 fontWeight: 500,
                 cursor: "pointer",

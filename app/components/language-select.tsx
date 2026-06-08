@@ -27,7 +27,7 @@ export function LanguageSelect({ locale }: { locale: Locale }) {
     <select
       value={locale}
       aria-label="Language selector"
-      className="h-8 rounded-md border border-slate-300 bg-white px-2 text-xs text-slate-700 focus:border-indigo-400 focus:outline-none md:text-sm"
+      className="pet-select h-8 px-3 text-xs font-medium focus:outline-none md:text-sm"
       onChange={(event) => {
         const nextLocale = event.target.value as Locale;
         router.push(buildLocalePath(pathname, nextLocale));
