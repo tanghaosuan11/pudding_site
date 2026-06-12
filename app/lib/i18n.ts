@@ -246,23 +246,48 @@ const dictionaries: Record<Locale, Dict> = {
     changelog: {
       entries: [
         {
+          version: "0.0.7",
+          date: "2026-06-11",
+          changes: [
+            "宠物支持自动归位，减少长时间拖拽后的位置偏移。",
+            "重构菜单与命令面板，实用功能改为开关样式，降低说话与打扰频率。",
+            "区域截图可设置宽高，优化截图编辑流程；修复 Pudding Jump 与气泡分组等问题。",
+            "设置面板与底部按钮布局优化，改进广告拦截与商店展示素材。",
+          ],
+        },
+        {
+          version: "0.0.5",
+          date: "2026-06-05",
+          changes: [
+            "窗口管理与全屏游戏、Tabs 互斥，避免多窗口叠压。",
+            "截图模块重写，新增编辑工具与文字标注，支持 Pin 气泡。",
+            "重构宠物状态切换，优化喂食球、阅读流程与双击菜单。",
+            "新增围住 Pudding、可配置游戏背景等玩法与权限设置。",
+          ],
+        },
+        {
           version: "0.0.4",
           date: "2026-06-01",
           changes: [
             "重构 AI Provider 系统，统一管理 AI 服务，修复 AI 分组功能异常。",
-            "优化宠物说话模块，重构对话逻辑，支持边走边静态，新增内容总结功能。",
-            "新增 Tabs 标签页功能，游戏窗口支持自由调节大小，优化 Doodle Jump 体验。",
-            "全面优化番茄钟、闹钟与计时器 UI，恢复阅读模式与 Cookie 功能，精简多语言实现。",
+            "优化宠物说话模块，支持边走边静态，新增内容总结功能。",
+            "新增 Tabs 功能，游戏窗口可调节大小，优化 Doodle Jump 体验。",
+            "全面优化番茄钟、闹钟与计时器 UI，恢复阅读模式与 Cookie 功能。",
           ],
         },
         {
           version: "0.0.2",
           date: "2026-05-28",
           changes: [
-            "发布通用版官网，包含展示与下载链路。",
-            "新增来源参数跳转路由，便于后续统计转化。",
-            "补齐隐私政策、使用条款与基础 SEO 文件。",
+            "通用版（无 AI 依赖）上线，支持划词翻译与流式结果播报。",
+            "新增金鱼模式，重构四角物理交互与番茄钟模块。",
+            "各小游戏支持独立菜单注册，优化角落动画与弹射体验。",
           ],
+        },
+        {
+          version: "0.0.1",
+          date: "2026-05-27",
+          changes: ["完成通用版打包前检查与基础能力整合。"],
         },
       ],
     },
@@ -428,23 +453,48 @@ const dictionaries: Record<Locale, Dict> = {
     changelog: {
       entries: [
         {
+          version: "0.0.7",
+          date: "2026-06-11",
+          changes: [
+            "Pet can return to its home position after being moved around.",
+            "Refactored menus and command panel; utility items use toggles; reduced speech frequency.",
+            "Region screenshots support custom size; improved capture workflow; fixed Pudding Jump and bubble grouping.",
+            "Settings panel and bottom button layout polish; ad blocker and store assets updated.",
+          ],
+        },
+        {
+          version: "0.0.5",
+          date: "2026-06-05",
+          changes: [
+            "Window manager now mutually exclusive with fullscreen games and Tabs.",
+            "Screenshot module rewritten with editing tools, text labels, and Pin bubble.",
+            "Refactored pet state transitions; improved feed ball, reading flow, and double-click menu.",
+            "Added surround Pudding mode and configurable game backgrounds.",
+          ],
+        },
+        {
           version: "0.0.4",
           date: "2026-06-01",
           changes: [
             "Refactored AI Provider system with unified AI service management; fixed AI group unavailable issue.",
-            "Overhauled pet speech module, reworked dialogue logic, added static-while-walking pose and content summarization.",
-            "Added Tabs support, game window resizing, and improved Doodle Jump experience.",
-            "Improved Pomodoro, alarm, and timer UI; restored reading mode and cookie support; streamlined i18n.",
+            "Overhauled pet speech module; static-while-walking pose and content summarization.",
+            "Added Tabs support, resizable game windows, and improved Doodle Jump.",
+            "Improved Pomodoro, alarm, and timer UI; restored reading mode and cookie support.",
           ],
         },
         {
           version: "0.0.2",
           date: "2026-05-28",
           changes: [
-            "Published the general website with showcase and download flow.",
-            "Added source-aware redirect route for conversion tracking.",
-            "Added privacy, terms, and baseline SEO files.",
+            "General variant (no AI required) shipped with selection translate and streaming results.",
+            "Added goldfish mode; refactored corner physics and Pomodoro module.",
+            "Per-game menu registration and improved corner animations.",
           ],
+        },
+        {
+          version: "0.0.1",
+          date: "2026-05-27",
+          changes: ["Pre-release checks for the general build and core integration."],
         },
       ],
     },
@@ -591,23 +641,48 @@ const dictionaries: Record<Locale, Dict> = {
     changelog: {
       entries: [
         {
+          version: "0.0.7",
+          date: "2026-06-11",
+          changes: [
+            "ペットが自動で元の位置に戻るようになりました。",
+            "メニューとコマンドパネルを再構成。実用機能はスイッチ化し、発話頻度を低減。",
+            "範囲スクショのサイズ指定に対応。Pudding Jump やバブルグループの不具合を修正。",
+            "設定パネルと下部ボタン配置を改善。広告ブロックとストア素材を更新。",
+          ],
+        },
+        {
+          version: "0.0.5",
+          date: "2026-06-05",
+          changes: [
+            "ウィンドウ管理とフルスクリーンゲーム・タブの排他制御を追加。",
+            "スクショモジュールを刷新。編集ツール・文字注釈・Pin バブルに対応。",
+            "ペットの状態遷移を再構成。フィードボールや読書フローを改善。",
+            "Pudding を囲むモードやゲーム背景の設定などを追加。",
+          ],
+        },
+        {
           version: "0.0.4",
           date: "2026-06-01",
           changes: [
-            "AI Provider システムをリファクタリングし、AI サービスを統一管理。AIグループ利用不可の問題を修正。",
-            "ペット発話モジュールを刷新し、歩行中の静止ポーズ表示と内容要約機能を追加。",
-            "タブ機能を追加し、ゲームウィンドウのサイズ変更に対応、Doodle Jump の体験を改善。",
-            "ポモドーロ・アラーム・タイマーの UI を改善。リーディングモードと Cookie 機能を復元、多言語実装を簡略化。",
+            "AI Provider を再構成し AI サービスを統一管理。AI グループ不具合を修正。",
+            "発話モジュールを刷新。歩行中の静止ポーズと内容要約を追加。",
+            "タブ機能、ゲームウィンドウのリサイズ、Doodle Jump の改善。",
+            "ポモドーロ・アラーム・タイマー UI 改善。リーディングモードと Cookie を復元。",
           ],
         },
         {
           version: "0.0.2",
           date: "2026-05-28",
           changes: [
-            "一般版サイトを公開し、紹介とダウンロード導線を整備。",
-            "流入元付きリダイレクトを追加し、転換計測に対応。",
-            "プライバシー、利用規約、SEO 基本設定を追加。",
+            "一般版（AI 不要）を公開。選択翻訳とストリーミング読み上げに対応。",
+            "金魚モードを追加。四隅の物理とポモドーロを再構成。",
+            "各ゲームの独立メニュー登録とコーナーアニメの改善。",
           ],
+        },
+        {
+          version: "0.0.1",
+          date: "2026-05-27",
+          changes: ["一般版ビルドの事前チェックと基盤統合。"],
         },
       ],
     },
@@ -754,23 +829,48 @@ const dictionaries: Record<Locale, Dict> = {
     changelog: {
       entries: [
         {
+          version: "0.0.7",
+          date: "2026-06-11",
+          changes: [
+            "펫이 원래 위치로 자동 복귀합니다.",
+            "메뉴·명령 패널 재구성, 유틸은 스위치로 전환, 말하기 빈도 감소.",
+            "영역 스크린샷 크기 지정, Pudding Jump·버블 그룹 버그 수정.",
+            "설정 패널·하단 버튼 배치 개선, 광고 차단·스토어 에셋 업데이트.",
+          ],
+        },
+        {
+          version: "0.0.5",
+          date: "2026-06-05",
+          changes: [
+            "창 관리와 전체 화면 게임·탭 상호 배제.",
+            "스크린샷 모듈 전면 개편, 편집·텍스트·Pin 버블 추가.",
+            "펫 상태 전환 재구성, 먹이 공·읽기 흐름·더블클릭 메뉴 개선.",
+            "Pudding 둘러싸기 모드, 게임 배경 설정 등 추가.",
+          ],
+        },
+        {
           version: "0.0.4",
           date: "2026-06-01",
           changes: [
-            "AI Provider 시스템 리팩터링으로 AI 서비스를 통합 관리하고 AI 그룹 오류를 수정했습니다.",
-            "펫 말하기 모듈을 재구성하고, 걸으면서 멈추는 자세와 내용 요약 기능을 추가했습니다.",
-            "탭 기능 추가, 게임 창 크기 조절 지원, Doodle Jump 경험을 개선했습니다.",
-            "포모도로·알람·타이머 UI 개선, 읽기 모드 및 Cookie 기능 복원, 다국어 구현 간소화.",
+            "AI Provider 리팩터링, AI 그룹 오류 수정.",
+            "말하기 모듈 개편, 걸으며 정지 포즈·내용 요약.",
+            "탭 기능, 게임 창 크기 조절, Doodle Jump 개선.",
+            "포모도로·알람·타이머 UI, 읽기 모드·Cookie 복원.",
           ],
         },
         {
           version: "0.0.2",
           date: "2026-05-28",
           changes: [
-            "일반 웹사이트를 공개하고 소개/다운로드 흐름을 구성했습니다.",
-            "유입 출처를 포함한 리다이렉트를 추가해 전환 추적을 지원합니다.",
-            "개인정보처리방침, 약관, 기본 SEO를 추가했습니다.",
+            "일반판(AI 불필요) 출시, 선택 번역·스트리밍 결과.",
+            "금붕어 모드, 코너 물리·포모도로 재구성.",
+            "게임별 메뉴 등록, 코너 애니메이션 개선.",
           ],
+        },
+        {
+          version: "0.0.1",
+          date: "2026-05-27",
+          changes: ["일반 빌드 사전 점검 및 기반 통합."],
         },
       ],
     },
@@ -921,23 +1021,48 @@ const dictionaries: Record<Locale, Dict> = {
     changelog: {
       entries: [
         {
+          version: "0.0.7",
+          date: "2026-06-11",
+          changes: [
+            "O pet volta automaticamente à posição inicial.",
+            "Menus e painel de comandos refeitos; utilitários em interruptores; menos falas.",
+            "Captura por região com tamanho customizável; correções no Pudding Jump e agrupamento de bolhas.",
+            "Painel de configurações e botões inferiores refinados; bloqueador de anúncios atualizado.",
+          ],
+        },
+        {
+          version: "0.0.5",
+          date: "2026-06-05",
+          changes: [
+            "Gerenciador de janelas exclusivo com jogos em tela cheia e abas.",
+            "Módulo de captura reescrito com edição, texto e bolha Pin.",
+            "Transições de estado do pet refeitas; bola de comida e fluxo de leitura melhorados.",
+            "Modo cercar o Pudding e fundos de jogo configuráveis.",
+          ],
+        },
+        {
           version: "0.0.4",
           date: "2026-06-01",
           changes: [
-            "Refatoração do sistema AI Provider com gerenciamento unificado de IA; corrigido problema de grupo de IA indisponível.",
-            "Módulo de fala do pet reformulado com pose estática durante o caminhar e nova função de resumo de conteúdo.",
-            "Adicionado suporte a abas (Tabs), redimensionamento da janela de jogo e melhora na experiência do Doodle Jump.",
-            "Melhorias de UI no Pomodoro, alarme e timer; modo de leitura e cookies restaurados; i18n simplificado.",
+            "AI Provider refatorado; grupo de IA indisponível corrigido.",
+            "Fala do pet reformulada; pose estática ao caminhar e resumo de conteúdo.",
+            "Abas, redimensionamento de janela de jogo e Doodle Jump melhorados.",
+            "UI de Pomodoro, alarme e timer; modo leitura e cookies restaurados.",
           ],
         },
         {
           version: "0.0.2",
           date: "2026-05-28",
           changes: [
-            "Lançamento do site geral com vitrine e fluxo de download.",
-            "Adição de redirecionamento com origem para medir conversão.",
-            "Inclusão de privacidade, termos e SEO básico.",
+            "Variante geral (sem IA) com tradução por seleção e resultados em streaming.",
+            "Modo peixinho dourado; física dos cantos e Pomodoro refeitos.",
+            "Menus por jogo e animações de canto aprimoradas.",
           ],
+        },
+        {
+          version: "0.0.1",
+          date: "2026-05-27",
+          changes: ["Verificações pré-build da variante geral e integração base."],
         },
       ],
     },
